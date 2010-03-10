@@ -1,0 +1,76 @@
+TStings_con
+v7
+r0
+t289496277.150757
+cCheck dependencies
+cCompileC build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Stings_con/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+cLd /Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004ABBF0FD00000000000000EE
+t1253830909
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004A5C14A70000000000004174
+t1247548583
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdlib.h
+c000000004A5C14A70000000000002DF5
+t1247548583
+s11765
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
+c000000004A5C14A70000000000001731
+t1247548583
+s5937
+
+N/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con
+t1267803477
+s9048
+
+N/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/Stings_con.LinkFileList
+c000000004B912554000000000000007C
+t1267803476
+s124
+
+N/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o
+t1267803473
+s3028
+
+N/Users/olivermankowski/Dropbox/Active/Stings_con/main.c
+c000000004B912551000000000000013A
+t1267803473
+s314
+i<stdio.h>
+i<string.h>
+i<stdlib.h>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies289496276#289496276#0(0"0(0#1#0"4300885448#0"0#
+
+CCompileC build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Stings_con/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+s289496276.658568
+e289496276.661106
+r1
+xCompileC
+xbuild/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o
+x/Users/olivermankowski/Dropbox/Active/Stings_con/main.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@63"Compile /Users/olivermankowski/Dropbox/Active/Stings_con/main.c289496276#289496276#0(171"/Users/olivermankowski/Dropbox/Active/Stings_con/main.c: In function 'main':/Users/olivermankowski/Dropbox/Active/Stings_con/main.c:7: warning: unused variable 'user_id'1(22@25"Unused variable 'user_id'289496276#77#94#0(6@55"/Users/olivermankowski/Dropbox/Active/Stings_con/main.c289496273#7#0#7#0#19"unused variable '*'0(0#0#55"/Users/olivermankowski/Dropbox/Active/Stings_con/main.c4300885448#1434"    cd /Users/olivermankowski/Dropbox/Active/Stings_con    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-generated-files.hmap -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-own-target-headers.hmap -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-all-target-headers.hmap -iquote /Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-project-headers.hmap -F/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/include -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/DerivedSources/x86_64 -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/DerivedSources -c /Users/olivermankowski/Dropbox/Active/Stings_con/main.c -o /Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o0#
+
+CLd /Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con normal x86_64
+s289496276.661486
+e289496277.150702
+r1
+xLd
+x/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con
+xnormal
+xx86_64
+lSLF07#2@76"Link /Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con289496276#289496277#0(0"0(0#0#0"4300885448#560"    cd /Users/olivermankowski/Dropbox/Active/Stings_con    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug -F/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug -filelist /Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/Stings_con.LinkFileList -mmacosx-version-min=10.6 -o /Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con0#
+

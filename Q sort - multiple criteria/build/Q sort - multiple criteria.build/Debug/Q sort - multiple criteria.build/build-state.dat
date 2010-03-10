@@ -1,0 +1,96 @@
+TQ sort - multiple criteria
+v7
+r0
+t289508802.978440
+cCheck dependencies
+cCompileC "build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/main.o" "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
+cLd "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria" normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004ABBF0FD00000000000000EE
+t1253830909
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004A5C14A70000000000004174
+t1247548583
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdlib.h
+c000000004A5C14A70000000000002DF5
+t1247548583
+s11765
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria
+t1267816002
+s9688
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/Q sort - multiple criteria.LinkFileList
+c000000004B850B0200000000000000B2
+t1267010306
+s178
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/main.o
+t1267815998
+s5612
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/Q sort - multiple criteria/main.c
+c000000004B9156AE0000000000000A4F
+t1267816110
+s2639
+i<stdio.h>
+i<stdlib.h>
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria
+t1267816002
+s9688
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/Q sort - multiple criteria.LinkFileList
+c000000004B850B0200000000000000B2
+t1267010306
+s178
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/main.o
+t1267815998
+s5612
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/main.c
+c000000004B9156AE0000000000000A4F
+t1267816110
+s2639
+i<stdio.h>
+i<stdlib.h>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies289508802#289508802#0(0"0(0#1#0"4300885448#0"0#
+
+CCompileC "build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/main.o" "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/Q sort - multiple criteria/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC "build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/main.o" "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
+s289508802.949911
+e289508802.951538
+r1
+xCompileC
+xbuild/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/main.o
+x/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/main.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@85"Compile /Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/main.c289508802#289508802#0(0"0(0#0#77"/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/main.c4300885448#1986"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Q sort - multiple criteria-generated-files.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Q sort - multiple criteria-own-target-headers.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Q sort - multiple criteria-all-target-headers.hmap" -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Q sort - multiple criteria-project-headers.hmap" "-F/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug" "-I/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug/include" "-I/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/DerivedSources/x86_64" "-I/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/DerivedSources" -c "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/main.c" -o "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/main.o"0#
+
+CLd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria" normal x86_64
+r0
+
+CLd "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria" normal x86_64
+s289508802.951621
+e289508802.978375
+r1
+xLd
+x/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria
+xnormal
+xx86_64
+lSLF07#2@114"Link /Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria289508802#289508802#0(0"0(0#0#0"4300885448#744"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug" "-F/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug" -filelist "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Q sort - multiple criteria.build/Debug/Q sort - multiple criteria.build/Objects-normal/x86_64/Q sort - multiple criteria.LinkFileList" -mmacosx-version-min=10.6 -o "/Users/olivermankowski/Dropbox/Active/Fidei/Q sort - multiple criteria/build/Debug/Q sort - multiple criteria"0#
+

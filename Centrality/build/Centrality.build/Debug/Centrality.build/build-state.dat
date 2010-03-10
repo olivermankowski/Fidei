@@ -1,15 +1,20 @@
 TCentrality
 v7
 r0
-t284136015.418901
+t289939815.374317
 cCheck dependencies
-cCompileC build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Centrality/main.c normal x86_64 c com.apple.compilers.gcc.4_2
-cLd /Users/olivermankowski/Dropbox/Active/Centrality/build/Debug/Centrality normal x86_64
+cCompileC build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
+cLd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality" normal x86_64
 
 N/Developer/SDKs/MacOSX10.6.sdk
 c000000004ABBF0FD00000000000000EE
 t1253830909
 s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/standards.h
+c000000004A5C14A6000000000000055B
+t1247548582
+s1371
 
 N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
 c000000004A5C14A70000000000004174
@@ -20,6 +25,16 @@ N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdlib.h
 c000000004A5C14A70000000000002DF5
 t1247548583
 s11765
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
+c000000004A5C14A70000000000001731
+t1247548583
+s5937
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/types.h
+c000000004A73D6550000000000002905
+t1249105493
+s10501
 
 N/Developer/SDKs/MacOSX10.6.sdk/usr/include/time.h
 c000000004A5C14A7000000000000178E
@@ -48,32 +63,89 @@ i<time.h>
 i<stdlib.h>
 
 N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/Centrality.LinkFileList
-c000000004B3F5A27000000000000007C
-t1262443047
-s124
+c000000004B9160CC0000000000000094
+t1267818700
+s148
 
 N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o
-t1262443133
-s39316
+t1268247014
+s60892
 
 N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality
-t1262443134
-s28560
+t1268247015
+s39040
 
 N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c
-c000000004B3F5AF50000000000008229
-t1262443253
-s33321
+c000000004B97E9F4000000000000A5CD
+t1268247028
+s42445
 i<stdio.h>
 i<time.h>
 i<stdlib.h>
+i<mysql.h>
+
+N/usr/local/mysql/include/my_alloc.h
+c000000004B293FBD000000000000070C
+t1260994493
+s1804
+
+N/usr/local/mysql/include/my_list.h
+c000000004B293FBD00000000000005D0
+t1260994493
+s1488
+
+N/usr/local/mysql/include/mysql.h
+c000000004B293FBD0000000000008376
+t1260994493
+s33654
+i<standards.h>
+i<sys/types.h>
+i<winsock2.h>
+i"mysql_version.h"
+i"mysql_com.h"
+i"mysql_time.h"
+i"my_list.h"
+i"typelib.h"
+i"my_alloc.h"
+
+N/usr/local/mysql/include/mysql_com.h
+c000000004B293FBD0000000000004ECE
+t1260994493
+s20174
+
+N/usr/local/mysql/include/mysql_time.h
+c000000004B293FBD0000000000000831
+t1260994493
+s2097
+
+N/usr/local/mysql/include/mysql_version.h
+c000000004B293FBD0000000000000334
+t1260994493
+s820
+i<custom_conf.h>
+
+N/usr/local/mysql/include/typelib.h
+c000000004B293FBD00000000000005DD
+t1260994493
+s1501
+i"my_alloc.h"
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies284136015#284136015#0(0"0(0#1#0"4300885448#0"0#
+lSLF07#2@18"Check dependencies289939814#289939814#0(0"0(0#1#0"4300885448#0"0#
 
 CCompileC build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
-r0
+s289939814.789119
+e289939814.905065
+r1
+xCompileC
+xbuild/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o
+x/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@87"Compile /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#289939814#0(4725"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'mysql_connect':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:143: warning: 'return' with a value, in function returning void/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:154: warning: 'return' with a value, in function returning void/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'mysql_loadin':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:191: warning: passing argument 1 of 'remove' from incompatible pointer type/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'mysql_loadout':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:224: warning: format '%i' expects type 'int', but argument 3 has type 'char *'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:224: warning: format '%i' expects type 'int', but argument 4 has type 'char *'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:224: warning: format '%f' expects type 'double', but argument 5 has type 'char *'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:224: warning: format '%i' expects type 'int', but argument 6 has type 'char *'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'memory_test':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:357: warning: format '%d' expects type 'int', but argument 2 has type 'double'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'export_results':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:740: warning: format '%i' expects type 'int', but argument 4 has type 'time_t'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'check_contact_list':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:790: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:790: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:795: warning: implicit declaration of function 'order_contact_list'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: At top level:/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:826: warning: conflicting types for 'order_contact_list'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:795: warning: previous implicit declaration of 'order_contact_list' was here/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'order_contact_list':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:868: warning: assignment from incompatible pointer type/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:937: warning: passing argument 1 of 'remove' from incompatible pointer type/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'find_users_score':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:991: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1004: warning: format '%f' expects type 'float *', but argument 6 has type 'int *'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1063: warning: format '%i' expects type 'int *', but argument 3 has type 'int'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1063: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'convert_contact_list':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1120: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1120: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'company_rating':/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1180: warning: format '%i' expects type 'int *', but argument 2 has type 'int'24(22@49"'return' with a value, in function returning void289939814#110#144#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#143#0#143#0#0"0(22@49"'return' with a value, in function returning void289939814#254#144#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#154#0#154#0#0"0(22@61"Passing argument 1 of 'remove' from incompatible pointer type289939814#507#156#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#191#0#191#0#56"passing argument * of '*' from incompatible pointer type0(22@64"Format '%i' expects type 'int', but argument 3 has type 'char *'289939814#773#159#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#224#0#224#0#56"format '*' expects type '*', but argument * has type '*'0(22@64"Format '%i' expects type 'int', but argument 4 has type 'char *'289939814#932#159#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#224#0#224#0#56"format '*' expects type '*', but argument * has type '*'0(22@67"Format '%f' expects type 'double', but argument 5 has type 'char *'289939814#1091#162#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#224#0#224#0#56"format '*' expects type '*', but argument * has type '*'0(22@64"Format '%i' expects type 'int', but argument 6 has type 'char *'289939814#1253#159#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#224#0#224#0#56"format '*' expects type '*', but argument * has type '*'0(22@64"Format '%d' expects type 'int', but argument 2 has type 'double'289939814#1520#159#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#357#0#357#0#56"format '*' expects type '*', but argument * has type '*'0(22@64"Format '%i' expects type 'int', but argument 4 has type 'time_t'289939814#1790#159#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#740#0#740#0#56"format '*' expects type '*', but argument * has type '*'0(22@67"Format '%i' expects type 'int *', but argument 5 has type 'float *'289939814#2064#162#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#790#0#790#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format289939814#2226#142#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#790#0#790#0#0"0(22@53"Implicit declaration of function 'order_contact_list'289939814#2368#148#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#795#0#795#0#36"implicit declaration of function '*'0(23@13"At top level:289939814#2516#95#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#0#0#0#0#0"0(22@42"Conflicting types for 'order_contact_list'289939814#2611#137#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#826#0#826#0#25"conflicting types for '*'0(22@62"Previous implicit declaration of 'order_contact_list' was here289939814#2748#157#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#795#0#795#0#45"previous implicit declaration of '*' was here0(22@41"Assignment from incompatible pointer type289939814#3020#136#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#868#0#868#0#41"assignment from incompatible pointer type0(22@61"Passing argument 1 of 'remove' from incompatible pointer type289939814#3156#156#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#937#0#937#0#56"passing argument * of '*' from incompatible pointer type0(22@47"Unknown conversion type character '.' in format289939814#3425#142#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#991#0#991#0#0"0(22@67"Format '%f' expects type 'float *', but argument 6 has type 'int *'289939814#3567#163#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#1004#0#1004#0#56"format '*' expects type '*', but argument * has type '*'0(22@63"Format '%i' expects type 'int *', but argument 3 has type 'int'289939814#3730#159#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#1063#0#1063#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format289939814#3889#143#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#1063#0#1063#0#0"0(22@67"Format '%i' expects type 'int *', but argument 5 has type 'float *'289939814#4149#163#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#1120#0#1120#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format289939814#4312#143#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#1120#0#1120#0#0"0(22@63"Format '%i' expects type 'int *', but argument 2 has type 'int'289939814#4566#159#0(6@79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c289939814#1180#0#1180#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c4300885448#1775"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-generated-files.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-own-target-headers.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-all-target-headers.hmap" -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-project-headers.hmap" "-F/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -iquote/usr/local/mysql/lib "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/include" -I/usr/local/mysql/include "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources/x86_64" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources" -c "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c" -o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o"0#
 
 CCompileC build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Centrality/main.c normal x86_64 c com.apple.compilers.gcc.4_2
 s284135933.521008
@@ -106,7 +178,14 @@ o/Users/olivermankowski/Dropbox/Active/Centrality/main.c:895: warning: format '%
 lSLF07#2@63"Compile /Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#284135933#0(1955"/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'memory_test':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:213: warning: format '%d' expects type 'int', but argument 2 has type 'double'/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'export_results':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:596: warning: format '%i' expects type 'int', but argument 4 has type 'time_t'/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'check_contact_list':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:646: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:646: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'find_users_score':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:706: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c:719: warning: format '%f' expects type 'float *', but argument 6 has type 'int *'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:778: warning: format '%i' expects type 'int *', but argument 3 has type 'int'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:778: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'convert_contact_list':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:835: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:835: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'company_rating':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:895: warning: format '%i' expects type 'int *', but argument 2 has type 'int'11(22@64"Format '%d' expects type 'int', but argument 2 has type 'double'284135933#84#135#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#213#0#213#0#56"format '*' expects type '*', but argument * has type '*'0(22@64"Format '%i' expects type 'int', but argument 4 has type 'time_t'284135933#306#135#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#596#0#596#0#56"format '*' expects type '*', but argument * has type '*'0(22@67"Format '%i' expects type 'int *', but argument 5 has type 'float *'284135933#532#138#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#646#0#646#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format284135933#670#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#646#0#646#0#0"0(22@47"Unknown conversion type character '.' in format284135933#877#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#706#0#706#0#0"0(22@67"Format '%f' expects type 'float *', but argument 6 has type 'int *'284135933#995#138#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#719#0#719#0#56"format '*' expects type '*', but argument * has type '*'0(22@63"Format '%i' expects type 'int *', but argument 3 has type 'int'284135933#1133#134#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#778#0#778#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format284135933#1267#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#778#0#778#0#0"0(22@67"Format '%i' expects type 'int *', but argument 5 has type 'float *'284135933#1478#138#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#835#0#835#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format284135933#1616#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#835#0#835#0#0"0(22@63"Format '%i' expects type 'int *', but argument 2 has type 'int'284135933#1821#134#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#895#0#895#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c3275089324280537600#1434"    cd /Users/olivermankowski/Dropbox/Active/Centrality    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-generated-files.hmap -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-own-target-headers.hmap -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-all-target-headers.hmap -iquote /Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-project-headers.hmap -F/Users/olivermankowski/Dropbox/Active/Centrality/build/Debug -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Debug/include -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources/x86_64 -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources -c /Users/olivermankowski/Dropbox/Active/Centrality/main.c -o /Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o0#
 
 CLd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality" normal x86_64
-r0
+s289939814.905150
+e289939815.374258
+r1
+xLd
+x/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality
+xnormal
+xx86_64
+lSLF07#2@100"Link /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality289939814#289939815#0(0"0(0#0#0"4300885448#777"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -L/usr/local/mysql/lib -L/usr/local/mysql "-F/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -filelist "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/Centrality.LinkFileList" -mmacosx-version-min=10.6 -L/usr/local/mysql/lib -lm -lmysqlclient -lz -o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality"0#
 
 CLd /Users/olivermankowski/Dropbox/Active/Centrality/build/Debug/Centrality normal x86_64
 s284135933.786658

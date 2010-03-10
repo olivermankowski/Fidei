@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <time.h>       //for time stamps
 #include <stdlib.h>     //for random numbers
+#include <mysql.h>
 
 //File Initialisation
 FILE *rating_list;  //file to store rating list data.
 FILE *centrality;   //file to store centrality results.
-FILE *contact_list; //file to read in contact list
+FILE *contactlist; //file to read in contact list
 FILE *lambda;       //holds the centrality programs lambda result
 
 //Array Structure Initialisation
@@ -15,8 +16,16 @@ struct ARRAYS
 };
 struct ARRAYS arrays;
 
+struct CONTACT_LIST
+{	int *target_id;
+	int *source_id;
+	float *raw_rating;
+	int *timestamp;
+};
+struct CONTACT_LIST contact_list;
+
 struct ADJ_LIST
-{      int *target_id;
+{   int *target_id;
 	int *source_id;
 	double *rating;
 };
@@ -47,6 +56,7 @@ struct SINGLE
 	int current_m;   //holds the largest 'm' in the list so far whilst scanning
     int found_m;     //determines 'm' from rating list - max. number of connections
     int *test_mem;   //finds max memory available
+	int timestamp;   //holds the time value read in from contact list
     float max_mem;     //holds the total memory available
     float req_mem;     //holds the expected required memory for 'n' and 'm' 
     int harddrive_flag; //if =0 ram can be used, if =1 hard drive must be used
@@ -89,8 +99,142 @@ struct SINGLE single;	//declare singles struct, ref by "singles.xxx"
 time_t start, end, now;	//Time variables (calc start time, end time and current time when using difftime)
 void *memset( void *buffer, int ch, size_t count );
 
+//Mysql Variables
+MYSQL *conn;
+MYSQL_ROW row;
+MYSQL_RES *result;
+MYSQL_FIELD *field;
+
+char *server = "localhost";
+char *user = "root";
+char *password = "";//Only bit to edit here
+char *database = "Fidei";
+
+//Below functions used for the order_contact_list program
+int  compare(struct CONTACT_LIST *, struct CONTACT_LIST *);
+typedef int (*compfn)(const void*, const void*);
+//Comparison_1 function
+int compare(struct CONTACT_LIST *elem1, struct CONTACT_LIST *elem2)
+{
+	if ( elem1->target_id < elem2->target_id)
+		return -1;
+	else if (elem1->target_id > elem2->target_id)
+		return 1;
+	else
+		return 0;
+}
+//Comparison_2 function
+int compare_2(struct CONTACT_LIST *elem1, struct CONTACT_LIST *elem2)
+{	//Need to add limits so it only compares whilst user_id stays the same
+	if ( elem1->source_id < elem2->source_id)
+		return -1;
+	else if (elem1->source_id > elem2->source_id)
+		return 1;
+	else
+		return 0;
+}
+
 //Functions
-void number ()
+void mysql_connect()
+{	conn = mysql_init(NULL);
+		if (conn == NULL) 
+		{
+		printf("Error %u: %s\n", mysql_errno(conn), mysql_error(conn));
+		return(0);
+		}//end if
+		else 
+		{
+		printf("Connection starting...\n");
+	
+		// Connect to database
+		printf("Connecting to mysql and opening database %s...\n", database);
+		if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) 
+			{
+			fprintf(stderr, "%s\n", mysql_error(conn));
+			return(0);
+			}//end if loop
+		else {printf("Connected.\n");}
+		
+		//Get mysql client version
+		printf("MySQL client version: %s\n", mysql_get_client_info());
+		}//end else
+}//end function
+
+void mysql_loadin()
+{//Loads data from a text file into MySQL
+	if     ((rating_list = fopen("contact_list.fidei", "r")) == NULL)
+	{
+		printf("***ERROR*** - Cannot open rating list.\n");
+	}
+	
+	//Select Fidei
+	database="Fidei";
+	if (mysql_select_db(conn, database));
+	{
+		fprintf(stderr, "%s\n", mysql_error(conn));
+	}
+	
+	char * search_1="INSERT INTO contact_list(user_id,source_id,raw_rating,timestamp) VALUES('";
+	char * search_2="')";
+	char * search; 
+	
+	single.i=0;
+	while(!feof(contactlist))
+	{      
+		fscanf(contactlist,"%i %i %f %i\n",&single.target_id, &single.source_id, &single.rating, &single.timestamp);
+	    sprintf(search,"%s%i,%i,%f,%i%s",search_1,single.target_id, single.source_id, single.rating,single.timestamp,search_2);
+		mysql_query(conn, search);
+		single.i++;
+	}//end while loop
+	printf("Loaded in %i values from contact_list into MySQL.\n",single.i);
+	fclose(contactlist);
+	remove(contactlist);
+	printf("Contact list file delete.\n");
+}//end mysql_loadin function
+
+
+void mysql_loadout()
+{	//Loads data from mysql into text file
+	//Select Fidei
+	database="Fidei";
+	if (mysql_select_db(conn, database));
+	{
+		fprintf(stderr, "%s\n", mysql_error(conn));
+	}
+
+	//Connect to database adj_list table
+	if (mysql_query(conn, "SELECT * FROM contact_list"))
+	{
+		fprintf(stderr, "%s\n", mysql_error(conn));
+	}
+	
+	result=mysql_use_result(conn);
+	row = mysql_fetch_row(result);
+	
+	if ((rating_list = fopen("contact_list.fidei", "w")) == NULL)
+	{
+		printf("***ERROR*** - Cannot open contact list.\n");
+	}
+	
+	printf("Loading in data from MySQL into contact list...\n");
+	//Start loading in data from mysql and save to text file
+	single.i=0;
+	while ((row = mysql_fetch_row(result)) != NULL)
+	{
+		fprintf(rating_list, "%i %i %f %i\n",row[1],row[2],row[3],row[4]);
+		single.i++;
+	}//end while loop
+	
+	printf("Loaded in %i rows of data from MySQL.\n",single.i);
+	
+	//Unload memory
+	mysql_free_result(result);
+	mysql_close(conn);
+	printf("Mysql connection closed and memory freed.\n");
+	
+}//end mysql_loadout function
+
+void generate ()
 {	single.rand_dec = ( rand() % 9);  //number random for 0 to 9
     single.rand_dec = ((single.rand_dec)+1); //makes rand_dec 1 to 10
     single.rand_rating = ( rand() % 5000);  //number rating from 0000 to 5000
@@ -383,14 +527,14 @@ void harddrive_matrix()
 		}
 		single.x0_max=0;
 		
-		//Find largest value in eigen_vector**********
+		//Find largest value in eigen_vector
 		for (single.i=0;single.i<=single.largest;single.i++)
     	{	if ( single.x0_max < arrays.eigen_vector[single.i])
 		{ single.x0_max = arrays.eigen_vector[single.i];
 		};
 		}; //end for loop
 		
-		//Normalise X0	*************
+		//Normalise X0
 		for (single.i=0;single.i<=single.largest;single.i++)
 		{ arrays.eigen_vector[single.i] = (arrays.eigen_vector[single.i] / single.x0_max);
 		}; //end for loop
@@ -619,12 +763,12 @@ void free_memory ()		//Frees memory allocated at the beginning
 
 void check_contact_list ()
 { if (single.error!=0)
-{return;
-}
+	{return;
+	}//end of is loop
 	
 	system("cls");
 	printf("Reading 'contact list' and verifying target and source id correct order...\n");
-	if     ((contact_list = fopen("contact_list.fidei", "r")) == NULL)
+	if     ((contactlist = fopen("contact_list.fidei", "r")) == NULL)
 	{
 		printf("***ERROR*** - Cannot open contact list.\n");
 		system("PAUSE");single.error=1;
@@ -639,26 +783,28 @@ void check_contact_list ()
 		single.count=0;
 		single.time_zero=0;
 		
-		while(!feof(contact_list))
+		while(!feof(contactlist))
 		{
 			single.count++;                            
-			fscanf(contact_list,"%i, %i, %i, %2.8f\n",&single.current_target, &single.current_source, 
+			fscanf(contactlist,"%i, %i, %i, %2.8f\n",&single.current_target, &single.current_source, 
 				   &single.current_rating, &single.current_time_stamp);
 			
 			//Tests to see that target id's increase ascendingly
 			if (single.current_target<single.previous_target)
 			{printf("Error in target ID's, line %i.\n",single.count);
+				order_contact_list();
 				break;
 			}// end if
 			//Tests that the sources all increase ascendingly, and that no sources are repeated on two lines together    
 			if (single.current_source<=single.previous_source)
 			{printf("Error in source ID's, line %i.\n",single.count);
+				order_contact_list();
 				break;
 			}//end if
 			
 			//Test that rating is a real number greater than zero
 			if (single.current_rating<0)
-			{printf("Error in rating number, line %i.\n",single.count);
+			{printf("Error in rating number, line %i. Correct error manually.\n",single.count);
 				break;
 			}// end if
 			
@@ -666,15 +812,154 @@ void check_contact_list ()
 			time(&now); //stores the current time
 			single.test_time = difftime (single.current_time_stamp, single.time_zero);
 			if (single.test_time>now)
-			{printf("Error in time value (i.e. in future), line %i.\n",single.count);
+			{printf("Error in time value (i.e. in future or <0), line %i. Correct error manually.\n",single.count);
 				break;
 			};// end if
 			
 		};//end while loop
 		printf("%i lines read, no errors found.\n",single.count);
-		fclose(contact_list);
+		fclose(contactlist);
 	};//end else
 };//end check contact list function
+
+void order_contact_list()
+{	int menu_select=0;
+	printf("A source_id or target_id was found in the Contact List order. \n"
+		   "Do you wish to attempt to reorder list and correct error?\n"
+		   "Enter '1' to proceed, '2' to abort.\n");
+	scanf("%d",&menu_select);
+	while(1)
+	{
+	switch(menu_select)
+	{
+		case 1: {
+				//Order program
+				//Determine length of contact list
+				if (single.error!=0)
+					{printf("ALERT: Error code does not equal zero. Upstream error - aborting.\n");
+						break;	
+					}
+				if ((contactlist = fopen("contact_list.fidei", "r")) == NULL)
+				{
+				printf("***ERROR*** - Cannot open Contact List.\n"); getchar();
+				break;
+				}//end if 
+				printf("Scanning contact list to determine number of rows.\n");
+				single.count=0;
+				while(!feof(contactlist))
+				{fscanf(contactlist, "\n");
+				 single.count++;
+				}//end while loop
+				fclose(contactlist);
+				printf("Scan completed. %i rows found.\n",single.count);
+			
+				//Allocate memory
+				 //Target ID
+				contact_list.target_id = (int *) realloc (contact_list.target_id, (single.count) * sizeof(int*));
+				if (contact_list.target_id==NULL)
+				{ puts ("Error (re)allocating contact list target id memory\n"); getchar();single.error=1;}
+
+				//Source ID
+				contact_list.source_id = (int *) realloc (contact_list.source_id, (single.count) * sizeof(int*));
+				if (contact_list.source_id==NULL)
+				{ puts ("Error (re)allocating contact list source id memory\n"); getchar();single.error=1;}
+			
+				//Raw Rating
+				contact_list.raw_rating = (int *) realloc (contact_list.raw_rating, (single.count) * sizeof(float*));
+				if (contact_list.raw_rating==NULL)
+				{ puts ("Error (re)allocating contact list raw rating memory\n"); getchar();single.error=1;}
+			
+				//Timestamp
+				contact_list.timestamp = (int *) realloc (contact_list.timestamp, (single.count) * sizeof(int*));
+				if (contact_list.timestamp==NULL)
+				{ puts ("Error (re)allocating contact list timestamp memory\n"); getchar();single.error=1;}
+				if (single.error==1){break;}
+				printf("All memory allocated successfully.\n");
+			
+				//Load contact list into memory
+				printf("Loading contact list into memory.\n");
+				if ((contactlist = fopen("contact_list.fidei", "r")) == NULL)
+				{
+				printf("***ERROR*** - Cannot open Contact List.\n"); getchar();
+				break;
+				}//end if 
+				single.count=0;
+				while(!feof(contactlist))
+				{fscanf(contactlist, "%i %i %f %i\n",&contact_list.target_id[single.count],&contact_list.source_id[single.count],
+						&contact_list.raw_rating[single.count],&contact_list.timestamp[single.count]);
+				single.count++;
+				}//end while loop
+				fclose(contactlist);
+				printf("Loaded in %i lines of contact list into memory.\n",single.count);
+			
+				//Performing sort
+				printf("Sorting by target_id (elem1).\n");
+				//Compare function 1
+				qsort((void *) &contact_list,                    // Beginning address of array
+				  single.count,                         // Number of elements in array
+				  sizeof(struct CONTACT_LIST),             // Size of each element
+				  (compfn)compare );                  // Pointer to compare function
+				
+				printf("Sorting source_id (elem2)\n");
+				//Compare function 2
+				//Find first address of element to order & number of rows affected
+				int i,j=0;
+				int length=0;
+				int start=0;
+				int end=0; 
+			
+				for (i=0;i<single.count;i++)
+				{	if(contact_list.target_id[i]!=contact_list.target_id[j])
+					{
+						start=j;
+						end=i;
+						length = end - start;	
+						//printf("Length found, sorting (start %i, end %i, length %i.)\n",start,end,length);
+						//	printf("Location of first element is %i.\n",&array[start].user_id);
+				
+						//Perform Sort
+						qsort((void *) (
+								&contact_list.target_id[start]),		// Beginning address of array
+								length,                             // Number of elements in array
+								sizeof(struct CONTACT_LIST),             // Size of each element
+								(compfn)compare_2);                 // Pointer to compare function	
+						j=i;
+					}//end if loop
+					end++;
+				
+				//printf("I: %d, J: %d.\n",i,j);	
+				//getchar();	
+				}//end while loop
+				printf("Contact List has now been sorted correctly.\n");
+				
+				//Exporting results
+				printf("Exporting results.\n");
+				remove(contactlist);
+				printf("Deleted old contact list file.\n");
+				if ((contactlist = fopen("contact_list.fidei", "r")) == NULL)
+				{
+				printf("***ERROR*** - Cannot open Contact List.\n"); getchar();
+				break;
+				}//end if 
+				printf("Writing new contact list...\n");
+				for (i=0;i<single.count;i++)
+					{fprintf(contactlist, "%i %i %f %i\n",contact_list.target_id[i],contact_list.source_id[i],
+							 contact_list.raw_rating[i],contact_list.timestamp[i]);
+					}//end for loop
+				fclose(contactlist);
+				printf("Wrote %i lines ito contact list. Sorting completed.\n",i);
+				
+				//End of program
+				printf("Now restarting contact list check program.\n");
+				check_contact_list();
+				}
+			
+		case 2: //returns to main program
+				break;
+			
+	}//end switch loop
+	}//end while loop
+}
 
 void find_users_score()
 {    if (single.error!=0)
@@ -706,7 +991,7 @@ void find_users_score()
 	fscanf(lambda, "%8.16f",&single.lambda);
 	
 	//Find number in contact list
-	if ((contact_list = fopen("contact_list.fidei", "r")) == NULL)
+	if ((contactlist = fopen("contact_list.fidei", "r")) == NULL)
 	{
 		printf("***ERROR*** - Cannot open contact list for reading.\n");
 		system("PAUSE");single.error=1;
@@ -715,8 +1000,8 @@ void find_users_score()
 	else
 	{ single.rolling_rating_sum=0;
 		time(&now); //reset timer
-		while(!feof(contact_list))
-		{fscanf(contact_list, "%i, %i, %f, %f\n",&single.current_target, &single.current_source, &single.raw_rating, &single.current_time_stamp);
+		while(!feof(contactlist))
+		{fscanf(contactlist, "%i, %i, %f, %f\n",&single.current_target, &single.current_source, &single.raw_rating, &single.current_time_stamp);
 			
 			//Once correct user ID is found, need to perform calculation for every source that user has 
 			if (single.current_target==single.user_score)
@@ -798,7 +1083,7 @@ void find_users_score()
 	//Close files
 	fclose(centrality);
 	fclose(lambda);
-	fclose(contact_list);
+	fclose(contactlist);
 	
 	//Output result
 	printf("User ID %i score is: %2.8f\n",single.user_score, single.rolling_rating_sum);
@@ -814,14 +1099,14 @@ void convert_contact_list()
 	system("cls");
 	printf("Converting contact list into rating list...\n");
 	
-	if     ((contact_list = fopen("contact_list.fidei", "r")) == NULL)
+	if     ((contactlist = fopen("contact_list.fidei", "r")) == NULL)
 	{
 		printf("***ERROR*** - Cannot open contact list for reading.\n");
 		system("PAUSE");single.error=1;
 		return;
 	}//end if 
 	else
-	{   if((contact_list = fopen("rating_list.fidei", "w")) == NULL)
+	{   if((contactlist = fopen("rating_list.fidei", "w")) == NULL)
 	{
 		printf("***ERROR*** - Cannot open rating list for writing.\n");
 		system("PAUSE");single.error=1;
@@ -831,7 +1116,7 @@ void convert_contact_list()
 	{      //to run below code if contact list is open-able and rating list can be written
 		time(&now); //resets clock to current time
 		while(!feof(rating_list))
-		{fscanf(contact_list,"%i, %i, %i, %2.8f\n",&single.current_target, &single.current_source, 
+		{fscanf(contactlist,"%i, %i, %i, %2.8f\n",&single.current_target, &single.current_source, 
 				&single.raw_rating, &single.current_time_stamp);
 			
 			single.rating_elapsed=difftime(now,single.current_time_stamp);
@@ -881,7 +1166,7 @@ void convert_contact_list()
 	}//end inner else loop
 		
 		fclose(rating_list);
-		fclose(contact_list);      
+		fclose(contactlist);      
 	}//end else loop
 	
 }//end convert contact list function
@@ -903,7 +1188,7 @@ void company_rating()
 	
 }//end company rating function
 
-int main()
+int main(int argc, char *argv[])
 { int menu_option=0;
 	srand(time(NULL));
 	time_t rawtime;
@@ -917,16 +1202,21 @@ int main()
 		system("cls");  
 		printf("Fidei Engine v0.96 - Beta\n"
 			   "-------------------------\n\n"); 
-		printf("Enter 1 to check contact list is correct.\n"
+		printf("Enter 0 to load in MySQL data.\n"
+			   "Enter 1 to check contact list is correct.\n"
 			   "Enter 2 to convert contact list into the rating list.\n"
 			   "Enter 3 to perform centrality calculation and save centrality results.\n"
-			   "Enter 4 to perform stages 1 - 3 automatically.\n"
+			   "Enter 4 to perform stages 0 - 3 automatically.\n"
 			   "Enter 5 to find a user's own rating score.\n"
 			   "Enter 6 to find a company's score.\n"
 			   "Enter 99 to exit.\n");
 		scanf("%d",&menu_option);
 		switch(menu_option)
-		{
+		{	
+			case 0: mysql_connect();
+					mysql_loadin();
+					mysql_loadout();
+				break;
 			case 1: check_contact_list ();
 				break;
 			case 2: convert_contact_list();
@@ -953,7 +1243,9 @@ int main()
 				//insert functions
 				break;
 			case 4: 
-				//insert case 1 and 2 functions
+				mysql_connect();
+				mysql_loadin();
+				mysql_loadout();
 				check_contact_list ();
 				convert_contact_list();
 				find_m_n();

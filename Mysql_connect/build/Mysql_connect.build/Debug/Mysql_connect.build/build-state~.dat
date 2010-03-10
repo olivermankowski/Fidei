@@ -1,0 +1,64 @@
+TMysql_connect
+v7
+r0
+t284137775.556870
+cCheck dependencies
+cCompileC build/Mysql_connect.build/Debug/Mysql_connect.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Mysql_connect/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+cLd /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug/Mysql_connect normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004ABBF0FD00000000000000EE
+t1253830909
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004A5C14A70000000000004174
+t1247548583
+s16756
+
+N/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug/Mysql_connect
+t1262444975
+s9000
+
+N/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Objects-normal/x86_64/Mysql_connect.LinkFileList
+c000000004B3F61AE0000000000000085
+t1262444974
+s133
+
+N/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Objects-normal/x86_64/main.o
+t1262444975
+s2700
+
+N/Users/olivermankowski/Dropbox/Active/Mysql_connect/main.c
+c000000004B3F61A80000000000000089
+t1262444968
+s137
+i<stdio.h>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies284137774#284137774#0(0"0(0#1#0"4300885448#0"0#
+
+CCompileC build/Mysql_connect.build/Debug/Mysql_connect.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Mysql_connect/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+s284137774.554851
+e284137775.126529
+r1
+xCompileC
+xbuild/Mysql_connect.build/Debug/Mysql_connect.build/Objects-normal/x86_64/main.o
+x/Users/olivermankowski/Dropbox/Active/Mysql_connect/main.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@66"Compile /Users/olivermankowski/Dropbox/Active/Mysql_connect/main.c284137774#284137775#0(0"0(0#0#58"/Users/olivermankowski/Dropbox/Active/Mysql_connect/main.c4300885448#1521"    cd /Users/olivermankowski/Dropbox/Active/Mysql_connect    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Mysql_connect-generated-files.hmap -I/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Mysql_connect-own-target-headers.hmap -I/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Mysql_connect-all-target-headers.hmap -iquote /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Mysql_connect-project-headers.hmap -F/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug -I/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug/include -I/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/DerivedSources/x86_64 -I/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/DerivedSources -c /Users/olivermankowski/Dropbox/Active/Mysql_connect/main.c -o /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Objects-normal/x86_64/main.o0#
+
+CLd /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug/Mysql_connect normal x86_64
+s284137775.126688
+e284137775.556815
+r1
+xLd
+x/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug/Mysql_connect
+xnormal
+xx86_64
+lSLF07#2@82"Link /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug/Mysql_connect284137775#284137775#0(0"0(0#0#0"4300885448#587"    cd /Users/olivermankowski/Dropbox/Active/Mysql_connect    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug -F/Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug -filelist /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Mysql_connect.build/Debug/Mysql_connect.build/Objects-normal/x86_64/Mysql_connect.LinkFileList -mmacosx-version-min=10.6 -o /Users/olivermankowski/Dropbox/Active/Mysql_connect/build/Debug/Mysql_connect0#
+
