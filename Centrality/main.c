@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <time.h>       //for time stamps
 #include <stdlib.h>     //for random numbers
-#include <mysql.h>
+#include <mysql.h>		//For mysql
 
 //File Initialisation
 FILE *rating_list;  //file to store rating list data.
 FILE *centrality;   //file to store centrality results.
 FILE *contactlist; //file to read in contact list
 FILE *lambda;       //holds the centrality programs lambda result
+FILE *ratingfactors; //holds the values that are used in the rating calculations
 
 //Array Structure Initialisation
 struct ARRAYS
@@ -15,6 +16,29 @@ struct ARRAYS
 	double *eigen_vector_new;	//ARRAY 2
 };
 struct ARRAYS arrays;
+
+struct RATING_FACTORS
+{	float time_1month;
+	float time_2month;
+	float time_3month;
+	float time_4month;
+	float time_5month;
+	float time_6month;
+	float time_7month;
+	float time_8month;
+	float time_9month;
+	float time_10month;
+	float time_11month;
+	float time_12month;
+	float link_level1;
+	float link_level2;
+	float link_level3;
+	float link_level4;
+	float link_level5;
+	float link_level6;
+	float personal_rating;
+};
+struct RATING_FACTORS rating_factors;
 
 struct CONTACT_LIST
 {	int *target_id;
@@ -105,10 +129,18 @@ MYSQL_ROW row;
 MYSQL_RES *result;
 MYSQL_FIELD *field;
 
+//Set below for local work
 char *server = "localhost";
 char *user = "root";
-char *password = "";//Only bit to edit here
+char *password = "";
 char *database = "Fidei";
+
+//Set below for remote work
+//char *server = "212.110.184.15";
+//char *user = "oliver@myfidei.com";
+//char *password = "";
+//char *database = "Fidei";
+
 
 //Below functions used for the order_contact_list program
 int  compare(struct CONTACT_LIST *, struct CONTACT_LIST *);
@@ -165,6 +197,7 @@ void mysql_loadin()
 	if     ((rating_list = fopen("contact_list.fidei", "r")) == NULL)
 	{
 		printf("***ERROR*** - Cannot open rating list.\n");
+		return(0);
 	}
 	
 	//Select Fidei
@@ -200,12 +233,16 @@ void mysql_loadout()
 	if (mysql_select_db(conn, database));
 	{
 		fprintf(stderr, "%s\n", mysql_error(conn));
+		getchar();
+		return(0);
 	}
 
 	//Connect to database adj_list table
 	if (mysql_query(conn, "SELECT * FROM contact_list"))
 	{
 		fprintf(stderr, "%s\n", mysql_error(conn));
+		getchar();
+		return(0);
 	}
 	
 	result=mysql_use_result(conn);
@@ -947,7 +984,7 @@ void order_contact_list()
 							 contact_list.raw_rating[i],contact_list.timestamp[i]);
 					}//end for loop
 				fclose(contactlist);
-				printf("Wrote %i lines ito contact list. Sorting completed.\n",i);
+				printf("Wrote %i lines to contact list. Sorting completed.\n",i);
 				
 				//End of program
 				printf("Now restarting contact list check program.\n");
@@ -1091,6 +1128,10 @@ void find_users_score()
 	
 }//end find_users_score function
 
+void find_user_rating_mysql()
+{
+}//end find user rating mysql
+
 void convert_contact_list()
 { if (single.error!=0)
 {return;
@@ -1173,8 +1214,11 @@ void convert_contact_list()
 
 void company_rating()
 {    if (single.error!=0)
-{return;
-}
+	{return;
+	}
+	
+	//DO THIS SECTION FOR A MYSQL DATABASE ONLY
+	
 	system("cls");
 	printf("Determine company rating.\nPlease enter company ID number:");
 	scanf("%i",single.company_id);
@@ -1187,6 +1231,20 @@ void company_rating()
 	//Output results
 	
 }//end company rating function
+
+void list_factors()
+{
+}//end list factors
+
+//TODO
+//1) Finish data generator
+//2) Finish find user score by mysql
+//3) Finish fund compay score by mysql
+//4) Add in system to read-in the rating factors from a file so all user/company/convert (4) ratings are centralised
+//5) Create function that lists factors
+//6) Test and prove program works well
+//7) Generate basic stats/analytics for users
+//8) Generate parralesied process
 
 int main(int argc, char *argv[])
 { int menu_option=0;
@@ -1207,8 +1265,10 @@ int main(int argc, char *argv[])
 			   "Enter 2 to convert contact list into the rating list.\n"
 			   "Enter 3 to perform centrality calculation and save centrality results.\n"
 			   "Enter 4 to perform stages 0 - 3 automatically.\n"
-			   "Enter 5 to find a user's own rating score.\n"
-			   "Enter 6 to find a company's score.\n"
+			   "Enter 5 to find a user's own rating score from rating list text file.\n"
+			   "Enter 6 to find a user's own rating score from mysql database.\n"
+			   "Enter 7 to find a company's score from mysql.\n"
+			   "Enter 8 to list the rating factors.\n"
 			   "Enter 99 to exit.\n");
 		scanf("%d",&menu_option);
 		switch(menu_option)
@@ -1269,7 +1329,11 @@ int main(int argc, char *argv[])
 				break;
 			case 5: find_users_score();
 				break;
-			case 6: company_rating();
+			case 6: find_user_rating_mysql();
+				break;
+			case 7: company_rating();
+				break;
+			case 8: list_factors();
 				break;
 			case 99: exit(1);
 				
