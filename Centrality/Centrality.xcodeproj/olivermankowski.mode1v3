@@ -292,7 +292,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>47 113 1034 664 0 0 1280 778 </string>
+						<string>118 114 1034 664 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -322,12 +322,12 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>ECDC44C7114C00B200C27387</string>
+										<string>ECDC4581114C4E4700C27387</string>
 										<key>history</key>
 										<array>
 											<string>ECAA5DAD1141A1F100FBA54A</string>
 											<string>EC88644B11480DD10081ED99</string>
-											<string>ECDC44B0114BFE3C00C27387</string>
+											<string>ECDC457D114C4CA100C27387</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -341,7 +341,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {826, 530}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 113 1034 664 0 0 1280 778 </string>
+								<string>118 114 1034 664 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -361,7 +361,7 @@
 								<key>Frame</key>
 								<string>{{0, 535}, {826, 88}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 113 1034 664 0 0 1280 778 </string>
+								<string>118 114 1034 664 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -533,7 +533,7 @@
 		<string>/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/Centrality.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>47 113 1034 664 0 0 1280 778 </string>
+	<string>118 114 1034 664 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -554,7 +554,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>main.c</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

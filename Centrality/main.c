@@ -106,6 +106,7 @@ struct SINGLE
     float rolling_rating_sum;
     float current_centrality;
     int current_target;
+    int menu_select; //for switch for function switches
     int previous_source;
     int current_source;
     int current_time_stamp;
@@ -115,6 +116,7 @@ struct SINGLE
     int company_id;
     float company_score;
     float time_correction_factor;
+    int search_id; //used by user_rating algo as input variable for desired user_id
     float rating_elapsed;
     float current_rating;
     double test_time; //stores the difference between read time and the time now
@@ -175,7 +177,7 @@ void mysql_connect()
 		if (conn == NULL) 
 		{
 		printf("Error %u: %s\n", mysql_errno(conn), mysql_error(conn));
-		return(0);
+		return;
 		}//end if
 		else 
 		{
@@ -186,7 +188,7 @@ void mysql_connect()
 		if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) 
 			{
 			fprintf(stderr, "%s\n", mysql_error(conn));
-			return(0);
+			return;
 			}//end if loop
 		else {printf("Connected.\n");}
 		
@@ -200,7 +202,7 @@ void mysql_loadin()
 	if     ((rating_list = fopen("contact_list.fidei", "r")) == NULL)
 	{
 		printf("***ERROR*** - Cannot open rating list.\n");
-		return(0);
+		return;
 	}
 	
 	//Select Fidei
@@ -237,7 +239,7 @@ void mysql_loadout()
 	{
 		fprintf(stderr, "%s\n", mysql_error(conn));
 		getchar();
-		return(0);
+		return;
 	}
 
 	//Connect to database adj_list table
@@ -245,7 +247,7 @@ void mysql_loadout()
 	{
 		fprintf(stderr, "%s\n", mysql_error(conn));
 		getchar();
-		return(0);
+		return;
 	}
 	
 	result=mysql_use_result(conn);
@@ -261,7 +263,7 @@ void mysql_loadout()
 	single.i=0;
 	while ((row = mysql_fetch_row(result)) != NULL)
 	{
-		fprintf(rating_list, "%i %i %f %i\n",row[1],row[2],row[3],row[4]);
+		fprintf(rating_list, "%i %i %d %i\n",atoi(row[1]),atoi(row[2]),atoi(row[3]),atoi(row[4]));
 		single.i++;
 	}//end while loop
 	
@@ -399,7 +401,7 @@ void memory_test()
 			printf("Testing 96 x %iMb...\n",single.i);
 			if (single.test_mem == NULL)
 			{ single.max_mem = (((single.i)-1)*8*12*1024*1024);
-				printf("Maximum memory available is %d bytes.\n",single.max_mem);
+				printf("Maximum memory available is %f bytes.\n",single.max_mem);
 				free (single.test_mem);
 				break;
 			};//end if loop
@@ -782,7 +784,7 @@ void export_results()
 	
 	else
 	{time(&now);
-		fprintf(lambda, "%8.16f, %i",single.lambda, now);
+		fprintf(lambda, "%8.16f, %d",single.lambda, now);
 	}//end else loop
 	fclose(lambda);
 	printf("Saved lambda value.\n");
@@ -868,14 +870,15 @@ void check_contact_list ()
 };//end check contact list function
 
 void order_contact_list()
-{	int menu_select=0;
+{	
+    single.menu_select=0;
 	printf("A source_id or target_id was found in the Contact List order. \n"
 		   "Do you wish to attempt to reorder list and correct error?\n"
 		   "Enter '1' to proceed, '2' to abort.\n");
-	scanf("%d",&menu_select);
+	scanf("%d",&single.menu_select);
 	while(1)
 	{
-	switch(menu_select)
+	switch(single.menu_select)
 	{
 		case 1: {
 				//Order program
@@ -910,7 +913,7 @@ void order_contact_list()
 				{ puts ("Error (re)allocating contact list source id memory\n"); getchar();single.error=1;}
 			
 				//Raw Rating
-				contact_list.raw_rating = (int *) realloc (contact_list.raw_rating, (single.count) * sizeof(float*));
+				contact_list.raw_rating = (float *) realloc (contact_list.raw_rating, (single.count) * sizeof(float*));
 				if (contact_list.raw_rating==NULL)
 				{ puts ("Error (re)allocating contact list raw rating memory\n"); getchar();single.error=1;}
 			
@@ -1006,154 +1009,37 @@ void order_contact_list()
 	}//end while loop
 }
 
-void find_users_score()
-{    if (single.error!=0)
-{return;
-}
-	
-	system("cls");
-	//Enter user's number
-	printf("Please enter desired user's (i.e. target id) number:\n");
-	scanf("%i",&single.user_score);
-	
-	//Open centrality results
-	if ((centrality = fopen("centrality.fidei", "r")) == NULL)
-	{
-		printf("***ERROR*** - Cannot open centrality list for reading.\n");
-		getchar();single.error=1;
-		return;
-	}//end if
-	
-	//Open lambda value
-	if ((lambda = fopen("lambda.fidei", "r")) == NULL)
-	{
-		printf("***ERROR*** - Cannot open lambda file for reading.\n");
-		getchar();single.error=1;
-		return;
-	}//end if
-	
-	//Load lambda value
-	fscanf(lambda, "%8.16f",&single.lambda);
-	
-	//Find number in contact list
-	if ((contactlist = fopen("contact_list.fidei", "r")) == NULL)
-	{
-		printf("***ERROR*** - Cannot open contact list for reading.\n");
-		getchar();single.error=1;
-		return;
-	}//end if 
-	else
-	{ loadin_factors();
-        
-        single.rolling_rating_sum=0;
-		time(&now); //reset timer
-		while(!feof(contactlist))
-		{fscanf(contactlist, "%i, %i, %f, %f\n",&single.current_target, &single.current_source, &single.raw_rating, &single.current_time_stamp);
-			
-			//Once correct user ID is found, need to perform calculation for every source that user has 
-			if (single.current_target==single.user_score)
-			{while(single.current_target==single.user_score)
-			{
-				//Backup encase the while loop skips
-				if(single.current_target!=single.user_score)
-				{printf("User's score computed.\n");
-					break;
-				}//end if loop
-				
-				//Find time correction factor
-				single.rating_elapsed = difftime(now, single.current_time_stamp);
-				
-				//Resets & backup setting (i.e. no time correction if below faults)
-				single.rating_correction=1;
-				
-				//Rating within 1 month - 1 month=60*60*24*30.5=2635200
-				if (single.rating_elapsed<2635200)
-				{single.rating_correction=1;}
-				//Rating within 2 month
-				if (single.rating_elapsed<5270400 && single.rating_elapsed>=2635200)
-				{single.rating_correction=0.9;}
-				//Rating within 3 month
-				if (single.rating_elapsed<7905600 && single.rating_elapsed>=5270400)
-				{single.rating_correction=0.8;}
-				//Rating within 4 month
-				if (single.rating_elapsed<10540800 && single.rating_elapsed>=7905600)
-				{single.rating_correction=0.7;}
-				//Rating within 5 month
-				if (single.rating_elapsed<13176000 && single.rating_elapsed>=10540800)
-				{single.rating_correction=0.6;}
-				//Rating within 6 month
-				if (single.rating_elapsed<15811200 && single.rating_elapsed>=13176000)
-				{single.rating_correction=0.5;}
-				//Rating within 7 month
-				if (single.rating_elapsed<18446400 && single.rating_elapsed>=15811200)
-				{single.rating_correction=0.4;}
-				//Rating within 8 month
-				if (single.rating_elapsed<21081600 && single.rating_elapsed>=18446400)
-				{single.rating_correction=0.3;}
-				//Rating within 9 month
-				if (single.rating_elapsed<23716800 && single.rating_elapsed>=21081600)
-				{single.rating_correction=0.2;}
-				//Rating within 10 month
-				else if (single.rating_elapsed>=23716800)
-				{single.rating_correction=0.1;}
-				
-				//Another backup line
-				else (single.rating_correction=0.1);
-				
-				//Performs time correction
-				single.adjusted_rating=(single.rating_correction*single.raw_rating);
-				
-				//Now find the centrality score of the source ID and factor it in
-				single.current_centrality=0;
-				
-				while(!feof(centrality))
-				{fscanf(centrality, "%i,%4.16f \n", single.i, single.current_centrality); 
-					if (single.i==single.current_source)
-					{break;//i.e. stop when correct source Id found
-					}//end if loop
-				}//end while function 
-				
-				if (single.current_centrality==0)
-				{printf("Error finding source ID...\n");
-				}//end if loop
-				
-				//Compute centrality adjusted result
-				single.adjusted_rating=(single.adjusted_rating*(single.lambda*single.current_centrality));                                                           
-				
-				//Sum up ratings
-				single.rolling_rating_sum=(single.rolling_rating_sum+single.adjusted_rating);
-			}//end inner while loop - this is exited when the next target id is met (so sum complete, can move onto next stage)
-			}//end if loop         
-		}//end outerwhile loop
-	}//end else loop
-	
-	//Close files
-	fclose(centrality);
-	fclose(lambda);
-	fclose(contactlist);
-	
-	//Output result
-	printf("User ID %i score is: %2.8f\n",single.user_score, single.rolling_rating_sum);
-	getchar();
-	
-}//end find_users_score function
-
 void find_user_rating_mysql()
-{	mysql_connect();
-	int search_id=NULL;
-	int target_id=NULL;
-	float rating=0;
-	
-	char * search;
+{	
+    single.search_id=0;
 	system("cls");
 	printf("Please enter desired user's id number:\n");
-	scanf("%i",&search_id);
+	scanf("%i",&single.search_id);
 	
-	if (search_id==NULL)
+	if (single.search_id==0)
 	{printf("No value entered - aborting.\n");
 		return;
 	}
 	
+    //Call function to get result
+	user_reputation();
+    if (single.rating!=0)
+    {printf("Rating result is %f.\n",single.rating);
+    }//end if
+    else 
+    {printf("Error in establishing user rating.\n");
+    }
+	getchar();
+}//end find user rating mysql
+
+//Function that takes in single.search_id and returns computed rating
+void user_reputation()
+{	
+    char * search;
+    single.rating=0;
+    mysql_connect();
+    loadin_factors();
+    
 	//Switch to Fidei database
 	database="Fidei";
 	if (mysql_select_db(conn, database));
@@ -1163,10 +1049,10 @@ void find_user_rating_mysql()
 		return;
 	}
 	
-	search=sprintf("SELECT target_id, source_id, raw rating FROM rating_list WHERE target_id='%i' ORDER BY source_id",search_id);
+	search=sprintf("SELECT target_id, source_id, raw rating FROM rating_list WHERE target_id='%i' ORDER BY source_id",single.search_id);
 	
 	//Send query to read data from database
-	printf("Performing search on user_id %i.\n",target_id);
+	printf("Performing search on user_id %i.\n",single.search_id);
 	if (mysql_query(conn, search));
 	{
 		fprintf(stderr, "%s\n", mysql_error(conn));
@@ -1179,11 +1065,6 @@ void find_user_rating_mysql()
 	{printf("No results found.\n");
 	};
 	
-	if (single.error==1)
-	{printf("WARNING: Error code = 1.\n");
-		getchar();
-	}
-	
 	time(&now); //resets clock to current time
 	single.i=0;
 	
@@ -1193,8 +1074,7 @@ void find_user_rating_mysql()
 		if (row == NULL)
 		{printf("No results found.\n");
 		};
-		
-		target_id=atoi(row[0]);
+
 		single.current_time_stamp=atoi(row[3]);
 		single.raw_rating=atoi(row[2]);
 		single.rating_elapsed=difftime(now,single.current_time_stamp);
@@ -1209,50 +1089,47 @@ void find_user_rating_mysql()
 		
 		//Rating within 1 month - 1 month=60*60*24*30.5=2635200 seconds
 		if (single.rating_elapsed<2635200)
-		{single.rating_correction=1;}
+		{single.rating_correction=rating_factors.time_1month;}
 		//Rating within 2 month
 		if (single.rating_elapsed<5270400 && single.rating_elapsed>=2635200)
-		{single.rating_correction=0.9;}
+		{single.rating_correction=rating_factors.time_2month;}
 		//Rating within 3 month
 		if (single.rating_elapsed<7905600 && single.rating_elapsed>=5270400)
-		{single.rating_correction=0.8;}
+		{single.rating_correction=rating_factors.time_3month;}
 		//Rating within 4 month
 		if (single.rating_elapsed<10540800 && single.rating_elapsed>=7905600)
-		{single.rating_correction=0.7;}
+		{single.rating_correction=rating_factors.time_4month;}
 		//Rating within 5 month
 		if (single.rating_elapsed<13176000 && single.rating_elapsed>=10540800)
-		{single.rating_correction=0.6;}
+		{single.rating_correction=rating_factors.time_5month;}
 		//Rating within 6 month
 		if (single.rating_elapsed<15811200 && single.rating_elapsed>=13176000)
-		{single.rating_correction=0.5;}
+		{single.rating_correction=rating_factors.time_6month;}
 		//Rating within 7 month
 		if (single.rating_elapsed<18446400 && single.rating_elapsed>=15811200)
-		{single.rating_correction=0.4;}
+		{single.rating_correction=rating_factors.time_7month;}
 		//Rating within 8 month
 		if (single.rating_elapsed<21081600 && single.rating_elapsed>=18446400)
-		{single.rating_correction=0.3;}
+		{single.rating_correction=rating_factors.time_8month;}
 		//Rating within 9 month
 		if (single.rating_elapsed<23716800 && single.rating_elapsed>=21081600)
-		{single.rating_correction=0.2;}
+		{single.rating_correction=rating_factors.time_9month;}
 		//Rating within 10 month
 		else if (single.rating_elapsed>=23716800)
-		{single.rating_correction=0.1;}
+		{single.rating_correction=rating_factors.time_10month;}
 		//Another backup line
-		else (single.rating_correction=0.1);
-
+		else (single.rating_correction=rating_factors.time_10month);
+        
 		single.adjusted_rating=0; //reset
 		single.adjusted_rating=(single.rating_correction*single.raw_rating);
 		
-		rating=rating+single.adjusted_rating;
-		single.i++;
+		single.rating=single.rating+single.adjusted_rating;
 	};
-	
-	printf("Read in %i peers ratings for user %i.\n",single.i,target_id);
-	printf("Rating result is %d.\n",rating);
 	mysql_disconnect();
-	getchar();
-	
-}//end find user rating mysql
+    
+    return;
+}//end function user reputation
+
 
 void convert_contact_list()
 { if (single.error!=0)
@@ -1338,7 +1215,7 @@ void company_rating()
 {    
 	system("cls");
 	char * search;
-	single.company_id=NULL;
+	single.company_id=0;
 	int num_rows=0;
 	int num_users=0;
     float company_rating=0;
@@ -1351,7 +1228,7 @@ void company_rating()
 	
 	printf("Determine company rating.\nPlease enter company ID number:\n");
 	scanf("%i",&single.company_id);
-	if (single.company_id==NULL)
+	if (single.company_id==0)
 	{	printf("No value entered - aborting.\n");
 		return;
 	}
@@ -1412,16 +1289,6 @@ void company_rating()
 	
 	printf("Read in %i of company users.\n",single.i);
     num_users=single.i;
-	
-    //Switch to Fidei database
-    database="Fidei";
-    if (mysql_select_db(conn, database));
-	{
-    fprintf(stderr, "%s\n", mysql_error(conn));
-    getchar();
-    return;
-    }                                          
-    search="NULL";//reset string
                                               
 	//Sum up all respective user's scores
 	for (single.i=0;single.i<num_users;single.i++)
@@ -1443,6 +1310,9 @@ void company_rating()
         
         time(&now); //resets clock to current time
         
+        //Loads in current rating factors
+        loadin_factors();
+        
         //Now for rows 0 to number of number of rows
         while ((row = mysql_fetch_row(result)) != NULL)
         {   
@@ -1461,36 +1331,36 @@ void company_rating()
             
             //Rating within 1 month - 1 month=60*60*24*30.5=2635200 seconds
             if (single.rating_elapsed<2635200)
-            {single.rating_correction=1;}
+            {single.rating_correction=rating_factors.time_1month;}
             //Rating within 2 month
             if (single.rating_elapsed<5270400 && single.rating_elapsed>=2635200)
-            {single.rating_correction=0.9;}
+            {single.rating_correction=rating_factors.time_2month;}
             //Rating within 3 month
             if (single.rating_elapsed<7905600 && single.rating_elapsed>=5270400)
-            {single.rating_correction=0.8;}
+            {single.rating_correction=rating_factors.time_3month;}
             //Rating within 4 month
             if (single.rating_elapsed<10540800 && single.rating_elapsed>=7905600)
-            {single.rating_correction=0.7;}
+            {single.rating_correction=rating_factors.time_4month;}
             //Rating within 5 month
             if (single.rating_elapsed<13176000 && single.rating_elapsed>=10540800)
-            {single.rating_correction=0.6;}
+            {single.rating_correction=rating_factors.time_5month;}
             //Rating within 6 month
             if (single.rating_elapsed<15811200 && single.rating_elapsed>=13176000)
-            {single.rating_correction=0.5;}
+            {single.rating_correction=rating_factors.time_6month;}
             //Rating within 7 month
             if (single.rating_elapsed<18446400 && single.rating_elapsed>=15811200)
-            {single.rating_correction=0.4;}
+            {single.rating_correction=rating_factors.time_7month;}
             //Rating within 8 month
             if (single.rating_elapsed<21081600 && single.rating_elapsed>=18446400)
-            {single.rating_correction=0.3;}
+            {single.rating_correction=rating_factors.time_8month;}
             //Rating within 9 month
             if (single.rating_elapsed<23716800 && single.rating_elapsed>=21081600)
-            {single.rating_correction=0.2;}
+            {single.rating_correction=rating_factors.time_9month;}
             //Rating within 10 month
             else if (single.rating_elapsed>=23716800)
-            {single.rating_correction=0.1;}
+            {single.rating_correction=rating_factors.time_10month;}
             //Another backup line
-            else (single.rating_correction=0.1);
+            else (single.rating_correction=rating_factors.time_10month);
             
             single.adjusted_rating=0; //reset
             single.adjusted_rating=(single.rating_correction*single.raw_rating);
@@ -1502,7 +1372,7 @@ void company_rating()
 
 	
 	//Output results
-	printf("Processed %i connected users, company's score is %d.\n",single.i,company_rating);
+	printf("Processed %i connected users, company's score is %f.\n",single.i,company_rating);
 	mysql_disconnect();
     free (search_company.company_id);
     free (search_company.user_id);
@@ -1517,7 +1387,7 @@ void loadin_factors()
         if     ((ratingfactors = fopen("ratingfactors.fidei", "r")) == NULL)
         {
             printf("***ERROR*** - Cannot open rating factors.\n");
-            return(0);
+            return;
         }
         fscanf(ratingfactors, "%f\n",&rating_factors.time_1month);
         fscanf(ratingfactors, "%f\n",&rating_factors.time_2month);
@@ -1546,7 +1416,7 @@ void list_factors()
         if((ratingfactors = fopen("ratingfactors.fidei", "r")) == NULL)
     	{
         printf("***ERROR*** - Cannot open rating factors.\n");
-        return(0);
+        return;
    	 	}//close if loop
         
         single.i=0;
@@ -1589,8 +1459,7 @@ int main(int argc, char *argv[])
 			   "Enter 2 to convert contact list into the rating list.\n"
 			   "Enter 3 to perform centrality calculation and save centrality results.\n"
 			   "Enter 4 to perform stages 0 - 3 automatically.\n"
-			   "Enter 5 to find a user's own rating score from rating list text file.\n"
-			   "Enter 6 to find a user's own rating score from mysql database.\n"
+               "Enter 6 to find a user's own rating score from mysql database.\n"
 			   "Enter 7 to find a company's score from mysql.\n"
 			   "Enter 8 to list the rating factors.\n"
 			   "Enter 99 to exit.\n");
@@ -1650,8 +1519,6 @@ int main(int argc, char *argv[])
 				printf("Processing time was: %4.0f seconds. \n",single.time_taken);
 				getchar();
 				free_memory();	
-				break;
-			case 5: find_users_score();
 				break;
 			case 6: find_user_rating_mysql();
 				break;
