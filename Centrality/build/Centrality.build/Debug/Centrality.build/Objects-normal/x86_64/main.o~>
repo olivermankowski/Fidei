@@ -1,37 +1,73 @@
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'mysql_connect':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:175: warning: 'return' with a value, in function returning void
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:186: warning: 'return' with a value, in function returning void
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:178: warning: 'return' with a value, in function returning void
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:189: warning: 'return' with a value, in function returning void
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'mysql_loadin':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:200: warning: 'return' with a value, in function returning void
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:224: warning: passing argument 1 of 'remove' from incompatible pointer type
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:203: warning: 'return' with a value, in function returning void
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:227: warning: passing argument 1 of 'remove' from incompatible pointer type
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'mysql_loadout':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:237: warning: 'return' with a value, in function returning void
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:245: warning: 'return' with a value, in function returning void
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:261: warning: format '%i' expects type 'int', but argument 3 has type 'char *'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:261: warning: format '%i' expects type 'int', but argument 4 has type 'char *'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:261: warning: format '%f' expects type 'double', but argument 5 has type 'char *'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:261: warning: format '%i' expects type 'int', but argument 6 has type 'char *'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'memory_test':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:394: warning: format '%d' expects type 'int', but argument 2 has type 'double'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'export_results':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:777: warning: format '%i' expects type 'int', but argument 4 has type 'time_t'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'check_contact_list':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:827: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:827: warning: unknown conversion type character '.' in format
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:832: warning: implicit declaration of function 'order_contact_list'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:240: warning: 'return' with a value, in function returning void
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:248: warning: 'return' with a value, in function returning void
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:264: warning: format '%i' expects type 'int', but argument 3 has type 'char *'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:264: warning: format '%i' expects type 'int', but argument 4 has type 'char *'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:264: warning: format '%f' expects type 'double', but argument 5 has type 'char *'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:264: warning: format '%i' expects type 'int', but argument 6 has type 'char *'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:271: warning: implicit declaration of function 'mysql_disconnect'
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: At top level:
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:863: warning: conflicting types for 'order_contact_list'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:832: warning: previous implicit declaration of 'order_contact_list' was here
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:276: warning: conflicting types for 'mysql_disconnect'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:271: warning: previous implicit declaration of 'mysql_disconnect' was here
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'memory_test':
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:402: warning: format '%d' expects type 'int', but argument 2 has type 'double'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'export_results':
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:785: warning: format '%i' expects type 'int', but argument 4 has type 'time_t'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'check_contact_list':
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:835: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:835: warning: unknown conversion type character '.' in format
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:840: warning: implicit declaration of function 'order_contact_list'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: At top level:
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:871: warning: conflicting types for 'order_contact_list'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:840: warning: previous implicit declaration of 'order_contact_list' was here
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'order_contact_list':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:905: warning: assignment from incompatible pointer type
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:974: warning: passing argument 1 of 'remove' from incompatible pointer type
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:913: warning: assignment from incompatible pointer type
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:982: warning: passing argument 1 of 'remove' from incompatible pointer type
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'find_users_score':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1028: warning: unknown conversion type character '.' in format
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1041: warning: format '%f' expects type 'float *', but argument 6 has type 'int *'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1100: warning: format '%i' expects type 'int *', but argument 3 has type 'int'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1100: warning: unknown conversion type character '.' in format
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1036: warning: unknown conversion type character '.' in format
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1046: warning: implicit declaration of function 'loadin_factors'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1051: warning: format '%f' expects type 'float *', but argument 6 has type 'int *'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1110: warning: format '%i' expects type 'int *', but argument 3 has type 'int'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1110: warning: unknown conversion type character '.' in format
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'find_user_rating_mysql':
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1143: warning: initialization makes integer from pointer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1144: warning: initialization makes integer from pointer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1152: warning: comparison between pointer and integer
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1166: warning: passing argument 4 of '__builtin___sprintf_chk' makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1166: warning: format not a string literal and no format arguments
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1166: warning: assignment makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1251: warning: format '%d' expects type 'int', but argument 2 has type 'double'
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'convert_contact_list':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1161: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1161: warning: unknown conversion type character '.' in format
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1283: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1283: warning: unknown conversion type character '.' in format
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'company_rating':
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1224: warning: format '%i' expects type 'int *', but argument 2 has type 'int'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1341: warning: assignment makes integer from pointer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1349: error: expected ';' before 'getchar'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1354: warning: comparison between pointer and integer
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1369: warning: passing argument 4 of '__builtin___sprintf_chk' makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1369: warning: format not a string literal and no format arguments
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1369: warning: assignment makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1392: error: expected ')' before ';' token
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1663: error: expected declaration or statement at end of input
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1345: warning: unused variable 'rating'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1344: warning: unused variable 'company_rating'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1343: warning: unused variable 'num_users'
+{standard input}:unknown:Undefined local symbol LC34
+{standard input}:unknown:Undefined local symbol LC57
+{standard input}:unknown:Undefined local symbol LC58
+{standard input}:unknown:Undefined local symbol LC59
+{standard input}:unknown:Undefined local symbol LC121
+{standard input}:unknown:Undefined local symbol LC122
+{standard input}:unknown:Undefined local symbol LC124
+{standard input}:unknown:Undefined local symbol LC126
+{standard input}:unknown:Undefined local symbol LC128
+{standard input}:unknown:Undefined local symbol LC130
+{standard input}:unknown:Undefined local symbol LC132
+{standard input}:unknown:Undefined local symbol LC134
+{standard input}:unknown:Undefined local symbol LC136
