@@ -1345,7 +1345,7 @@ void company_rating()
     float rating=0;
 	
 	if (single.error!=0)
-	{	printf("Warning, error code 1 in system.\nContinuing...\n")
+	{	printf("Warning, error code 1 in system.\nContinuing...\n");
 		getchar();
 	}
 	
@@ -1389,20 +1389,24 @@ void company_rating()
 	
 	//Memory allocation
 	//Company ID
-	search_company.company_id = (int *) realloc (search_company.company_id, ((num_rows +1) * sizeof(int));
+	search_company.company_id = (int *) realloc (search_company.company_id, ((num_rows +1) * sizeof(int)));
 	if (search_company.company_id == NULL)
 	{ puts ("Error (re)allocating search company company id memory\n"); getchar();single.error=1;}
-	//User ID
-	search_company.user_id = (int *) realloc (search_company.user_id, ((num_rows +1) * sizeof(int));
+	
+    //User ID
+	search_company.user_id = (int *) realloc (search_company.user_id, ((num_rows +1) * sizeof(int)));
 	if (search_company.user_id == NULL)
-	{ puts ("Error (re)allocating search company user id memory\n"); getchar();single.error=1;}
+	{ puts ("Error (re)allocating search company user id memory\n"); 
+        getchar();
+        single.error=1;
+    };
 	printf("Memory allocated.\n");
 											  
 	//Now for rows 0 to number of number of rows
 	single.i=0;
 	while ((row = mysql_fetch_row(result)) != NULL)
-	{   search_company.company_id=row[0];
-		search_company.user_id=row[1];	
+	{   search_company.company_id=atoi(row[0]);
+		search_company.user_id=atoi(row[1]);	
 		single.i++;
 	}//end while loop
 	
@@ -1505,37 +1509,38 @@ void company_rating()
     printf("Memory freed.\n");    
     getchar();
         
-}//end company rating function
+    }
+};//end company rating function
 
 void loadin_factors()
-    {
+{
         if     ((ratingfactors = fopen("ratingfactors.fidei", "r")) == NULL)
         {
             printf("***ERROR*** - Cannot open rating factors.\n");
             return(0);
         }
-        fscanf(ratingfactors, "%f\n",&time_1month);
-        fscanf(ratingfactors, "%f\n",&time_2month);
-        fscanf(ratingfactors, "%f\n",&time_3month);
-        fscanf(ratingfactors, "%f\n",&time_4month);
-        fscanf(ratingfactors, "%f\n",&time_5month);
-        fscanf(ratingfactors, "%f\n",&time_6month);
-        fscanf(ratingfactors, "%f\n",&time_7month);
-        fscanf(ratingfactors, "%f\n",&time_8month);
-        fscanf(ratingfactors, "%f\n",&time_9month);
-        fscanf(ratingfactors, "%f\n",&time_10month);
-        fscanf(ratingfactors, "%f\n",&link_level1);
-    	fscanf(ratingfactors, "%f\n",&link_level2);
-        fscanf(ratingfactors, "%f\n",&link_level3);
-        fscanf(ratingfactors, "%f\n",&link_level4);
-        fscanf(ratingfactors, "%f\n",&link_level5);
-        fscanf(ratingfactors, "%f\n",&link_level6);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_1month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_2month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_3month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_4month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_5month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_6month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_7month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_8month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_9month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.time_10month);
+        fscanf(ratingfactors, "%f\n",&rating_factors.link_level1);
+    	fscanf(ratingfactors, "%f\n",&rating_factors.link_level2);
+        fscanf(ratingfactors, "%f\n",&rating_factors.link_level3);
+        fscanf(ratingfactors, "%f\n",&rating_factors.link_level4);
+        fscanf(ratingfactors, "%f\n",&rating_factors.link_level5);
+        fscanf(ratingfactors, "%f\n",&rating_factors.link_level6);
         fclose(ratingfactors);
         
-    }//end loadin_factors function
+};//end loadin_factors function
                                               
 void list_factors()
-    {	printf("Rating factors...\n")
+    {	printf("Rating factors...\n");
         float factor=0;
         
         if((ratingfactors = fopen("ratingfactors.fidei", "r")) == NULL)
@@ -1546,7 +1551,7 @@ void list_factors()
         
         single.i=0;
         while(!feof(ratingfactors))
-		{ fscanf(ratingfactors, "%f\n",&factor)
+		{ fscanf(ratingfactors, "%f\n",&factor);
           printf("Factor %i is %f.\n",single.i,factor);
         }//end while loop
 		printf("To edit factors, edit text file 'ratingfactors.fidei.\n");
@@ -1556,9 +1561,11 @@ void list_factors()
 
 //TODO
 //1) Finish data generator
+//2) Add code that exports the determine user rating and company rating to mysql
+//3) Function that makes a raw rating
 //4) Add in system to read-in the rating factors
 //5) Create one function that takes in a user_id and returns a rating
-//5.5) Function that makes a raw rating
+//5.5) Function to export centrality results to mysql
 //6) Test and prove program works well
 //7) Generate basic stats/analytics for users
 //8) Generate parralesied process

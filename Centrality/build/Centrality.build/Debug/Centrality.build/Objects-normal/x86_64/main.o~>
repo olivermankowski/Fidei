@@ -48,26 +48,20 @@
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1283: warning: unknown conversion type character '.' in format
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'company_rating':
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1341: warning: assignment makes integer from pointer without a cast
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1349: error: expected ';' before 'getchar'
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1354: warning: comparison between pointer and integer
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1369: warning: passing argument 4 of '__builtin___sprintf_chk' makes pointer from integer without a cast
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1369: warning: format not a string literal and no format arguments
 /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1369: warning: assignment makes pointer from integer without a cast
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1392: error: expected ')' before ';' token
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1663: error: expected declaration or statement at end of input
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1345: warning: unused variable 'rating'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1344: warning: unused variable 'company_rating'
-/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1343: warning: unused variable 'num_users'
-{standard input}:unknown:Undefined local symbol LC34
-{standard input}:unknown:Undefined local symbol LC57
-{standard input}:unknown:Undefined local symbol LC58
-{standard input}:unknown:Undefined local symbol LC59
-{standard input}:unknown:Undefined local symbol LC121
-{standard input}:unknown:Undefined local symbol LC122
-{standard input}:unknown:Undefined local symbol LC124
-{standard input}:unknown:Undefined local symbol LC126
-{standard input}:unknown:Undefined local symbol LC128
-{standard input}:unknown:Undefined local symbol LC130
-{standard input}:unknown:Undefined local symbol LC132
-{standard input}:unknown:Undefined local symbol LC134
-{standard input}:unknown:Undefined local symbol LC136
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1408: warning: assignment makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1409: warning: assignment makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1429: warning: passing argument 4 of '__builtin___sprintf_chk' makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1429: warning: format not a string literal and no format arguments
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1429: warning: assignment makes pointer from integer without a cast
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1505: warning: format '%d' expects type 'int', but argument 3 has type 'double'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: At top level:
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1516: warning: conflicting types for 'loadin_factors'
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1046: warning: previous implicit declaration of 'loadin_factors' was here
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'loadin_factors':
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1520: warning: 'return' with a value, in function returning void
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c: In function 'list_factors':
+/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c:1549: warning: 'return' with a value, in function returning void
