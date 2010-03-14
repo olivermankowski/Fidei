@@ -1,7 +1,7 @@
 TCentrality
 v7
 r0
-t290221869.671642
+t290257595.042414
 cCheck dependencies
 cCompileC build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
 cLd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality" normal x86_64
@@ -10,6 +10,11 @@ N/Developer/SDKs/MacOSX10.6.sdk
 c000000004ABBF0FD00000000000000EE
 t1253830909
 s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
+c000000004A5C14A000000000000004F1
+t1247548576
+s1265
 
 N/Developer/SDKs/MacOSX10.6.sdk/usr/include/standards.h
 c000000004A5C14A6000000000000055B
@@ -68,21 +73,22 @@ t1267818700
 s148
 
 N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o
-t1268529069
-s65016
+t1268564794
+s71308
 
 N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality
-t1268529069
-s39864
+t1268564795
+s44496
 
 N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c
-c000000004B9C37AD000000000000C88B
-t1268529069
-s51339
+c000000004B9CC354000000000000DFD5
+t1268564820
+s57301
 i<stdio.h>
 i<time.h>
 i<stdlib.h>
 i<mysql.h>
+i<math.h>
 
 N/usr/local/mysql/include/my_alloc.h
 c000000004B293FBD000000000000070C
@@ -132,11 +138,11 @@ i"my_alloc.h"
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies290221869#290221869#0(0"0(0#1#0"4300885448#0"0#
+lSLF07#2@18"Check dependencies290257594#290257594#0(0"0(0#1#0"4300885448#0"0#
 
 CCompileC build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s290221869.457589
-e290221869.629953
+s290257594.810803
+e290257595.012102
 r1
 xCompileC
 xbuild/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o
@@ -145,7 +151,7 @@ xnormal
 xx86_64
 xc
 xcom.apple.compilers.gcc.4_2
-lSLF07#2@87"Compile /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c290221869#290221869#0(0"0(0#0#79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c4300885448#1775"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-generated-files.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-own-target-headers.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-all-target-headers.hmap" -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-project-headers.hmap" "-F/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -iquote/usr/local/mysql/lib "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/include" -I/usr/local/mysql/include "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources/x86_64" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources" -c "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c" -o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o"0#
+lSLF07#2@87"Compile /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c290257594#290257595#0(0"0(0#0#79"/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c4300885448#1775"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-generated-files.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-own-target-headers.hmap" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-all-target-headers.hmap" -iquote "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-project-headers.hmap" "-F/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -iquote/usr/local/mysql/lib "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/include" -I/usr/local/mysql/include "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources/x86_64" "-I/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources" -c "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/main.c" -o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o"0#
 
 CCompileC build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Centrality/main.c normal x86_64 c com.apple.compilers.gcc.4_2
 s284135933.521008
@@ -178,14 +184,14 @@ o/Users/olivermankowski/Dropbox/Active/Centrality/main.c:895: warning: format '%
 lSLF07#2@63"Compile /Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#284135933#0(1955"/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'memory_test':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:213: warning: format '%d' expects type 'int', but argument 2 has type 'double'/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'export_results':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:596: warning: format '%i' expects type 'int', but argument 4 has type 'time_t'/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'check_contact_list':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:646: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:646: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'find_users_score':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:706: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c:719: warning: format '%f' expects type 'float *', but argument 6 has type 'int *'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:778: warning: format '%i' expects type 'int *', but argument 3 has type 'int'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:778: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'convert_contact_list':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:835: warning: format '%i' expects type 'int *', but argument 5 has type 'float *'/Users/olivermankowski/Dropbox/Active/Centrality/main.c:835: warning: unknown conversion type character '.' in format/Users/olivermankowski/Dropbox/Active/Centrality/main.c: In function 'company_rating':/Users/olivermankowski/Dropbox/Active/Centrality/main.c:895: warning: format '%i' expects type 'int *', but argument 2 has type 'int'11(22@64"Format '%d' expects type 'int', but argument 2 has type 'double'284135933#84#135#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#213#0#213#0#56"format '*' expects type '*', but argument * has type '*'0(22@64"Format '%i' expects type 'int', but argument 4 has type 'time_t'284135933#306#135#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#596#0#596#0#56"format '*' expects type '*', but argument * has type '*'0(22@67"Format '%i' expects type 'int *', but argument 5 has type 'float *'284135933#532#138#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#646#0#646#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format284135933#670#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#646#0#646#0#0"0(22@47"Unknown conversion type character '.' in format284135933#877#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#706#0#706#0#0"0(22@67"Format '%f' expects type 'float *', but argument 6 has type 'int *'284135933#995#138#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#719#0#719#0#56"format '*' expects type '*', but argument * has type '*'0(22@63"Format '%i' expects type 'int *', but argument 3 has type 'int'284135933#1133#134#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#778#0#778#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format284135933#1267#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#778#0#778#0#0"0(22@67"Format '%i' expects type 'int *', but argument 5 has type 'float *'284135933#1478#138#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#835#0#835#0#56"format '*' expects type '*', but argument * has type '*'0(22@47"Unknown conversion type character '.' in format284135933#1616#118#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#835#0#835#0#0"0(22@63"Format '%i' expects type 'int *', but argument 2 has type 'int'284135933#1821#134#0(6@55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c284135933#895#0#895#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#55"/Users/olivermankowski/Dropbox/Active/Centrality/main.c3275089324280537600#1434"    cd /Users/olivermankowski/Dropbox/Active/Centrality    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-generated-files.hmap -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-own-target-headers.hmap -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-all-target-headers.hmap -iquote /Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Centrality-project-headers.hmap -F/Users/olivermankowski/Dropbox/Active/Centrality/build/Debug -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Debug/include -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources/x86_64 -I/Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/DerivedSources -c /Users/olivermankowski/Dropbox/Active/Centrality/main.c -o /Users/olivermankowski/Dropbox/Active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/main.o0#
 
 CLd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality" normal x86_64
-s290221869.630067
-e290221869.671590
+s290257595.012191
+e290257595.042326
 r1
 xLd
 x/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality
 xnormal
 xx86_64
-lSLF07#2@100"Link /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality290221869#290221869#0(0"0(0#0#0"4300885448#777"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -L/usr/local/mysql/lib -L/usr/local/mysql "-F/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -filelist "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/Centrality.LinkFileList" -mmacosx-version-min=10.6 -L/usr/local/mysql/lib -lm -lmysqlclient -lz -o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality"0#
+lSLF07#2@100"Link /Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality290257595#290257595#0(0"0(0#0#0"4300885448#777"    cd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -L/usr/local/mysql/lib -L/usr/local/mysql "-F/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug" -filelist "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Centrality.build/Debug/Centrality.build/Objects-normal/x86_64/Centrality.LinkFileList" -mmacosx-version-min=10.6 -L/usr/local/mysql/lib -lm -lmysqlclient -lz -o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Centrality/build/Debug/Centrality"0#
 
 CLd /Users/olivermankowski/Dropbox/Active/Centrality/build/Debug/Centrality normal x86_64
 s284135933.786658

@@ -2,6 +2,7 @@
 #include <time.h>       //for time stamps
 #include <stdlib.h>     //for random numbers
 #include <mysql.h>		//For mysql
+#include <math.h>		//For sqrt and alike
 
 //File Initialisation
 FILE *rating_list;  //file to store rating list data.
@@ -110,12 +111,20 @@ struct SINGLE
     int previous_source;
     int current_source;
     int current_time_stamp;
+    int user_analytic_id;		//id for user analytic search
+    int company_analytic_id;	//id for company analytic search
     float raw_rating;
     long time_now; //for casted time value
     float adjusted_rating;
     int time_zero;
+    float user_mean; 		//holds user's means analytic value
+    float user_std_dev;		//holds user's standard deviation analytic value
+    float user_rating_sqr;  //holds the square of user's rating during calc
+    float company_mean; 	//holds company's means analytic value
+    float company_std_dev;	//holds company's standard deviation analytic value
+    float company_rating_sqr; //holds company's rating squared during calc
     int company_id;
-    float company_score;
+    float company_rating;		//holds the result of company_reputation function
     float time_correction_factor;
     int search_id; //used by user_rating algo as input variable for desired user_id
     float rating_elapsed;
@@ -127,11 +136,17 @@ struct SINGLE single;	//declare singles struct, ref by "singles.xxx"
 
 // time_t basis: 00:00:00 on January 1, 1970, Coordinated Universal Time. (aka 'epoch') 
 time_t start, end, now;	//Time variables (calc start time, end time and current time when using difftime)
+
+//Define functions
 void *memset( void *buffer, int ch, size_t count );
 void mysql_disconnect();
 void order_contact_list();
 void user_reputation();
 void loadin_factors();
+void rate_user();
+void company_reputation();
+void user_analytics();
+void company_analytics();
 
 //Mysql Variables
 MYSQL *conn;
@@ -1111,12 +1126,13 @@ void find_user_rating_mysql()
 		printf("Error %u: %s\n", mysql_errno(conn), mysql_error(conn));
 	}
     printf("Results inserted into MySQL.\n");
-    
+    mysql_disconnect();
 	getchar();
+    
 }//end find user rating mysql
 
 //Function that takes in single.search_id and returns computed rating
-void user_reputation()
+void user_reputation()	//reads in single.search_id and returns single.rating
 {	
     char * search;
     single.rating=0;
@@ -1150,7 +1166,11 @@ void user_reputation()
 	
 	time(&now); //resets clock to current time
 	single.i=0;
-	
+    single.rating=0; //resets
+    single.user_rating_sqr=0; //resets
+    single.user_mean=0;		//resets
+    single.user_std_dev=0;	//resets
+    
 	//Now for rows 0 to number of number of rows
 	while ((row = mysql_fetch_row(result)) != NULL)
 	{   
@@ -1207,8 +1227,10 @@ void user_reputation()
 		single.adjusted_rating=(single.rating_correction*single.raw_rating);
 		
 		single.rating=single.rating+single.adjusted_rating;
+        
+        //Produces sum of squares
+    	single.user_rating_sqr=single.user_rating_sqr+(single.rating*single.rating); 
 	};
-	mysql_disconnect();
     
     return;
 }//end function user reputation
@@ -1299,29 +1321,16 @@ void convert_contact_list()
 	
 }//end convert contact list function
 
-void company_rating()
-{    
-	system("cls");
-	char * search;
-    char * output;
-	single.company_id=0;
-	int num_rows=0;
+void company_reputation()
+{	//takes in a single.company_id and returns single.j (number of company's users)
+    //and single.company_rating and a struct with user_id and user_rating
+    int num_rows=0;
 	int num_users=0;
-    float company_rating=0;
+    char * search;
+    
+    mysql_connect();
 	
-	if (single.error!=0)
-	{	printf("Warning, error code 1 in system.\nContinuing...\n");
-		getchar();
-	}
-	
-	printf("Determine company rating.\nPlease enter company ID number:\n");
-	scanf("%i",&single.company_id);
-	if (single.company_id==0)
-	{	printf("No value entered - aborting.\n");
-		return;
-	}
-	
-	//Search company list for company
+    //Search company list for company
 	//Switch to Fidei database
 	database="Fidei";
 	if (mysql_select_db(conn, database));
@@ -1366,7 +1375,7 @@ void company_rating()
         single.error=1;
     };
 	printf("Memory allocated.\n");
-											  
+    
 	//Now for rows 0 to number of number of rows
 	single.i=0;
 	while ((row = mysql_fetch_row(result)) != NULL)
@@ -1375,31 +1384,55 @@ void company_rating()
 		single.i++;
 	}//end while loop
 	
-	printf("Read in %i of company users.\n",single.i);
-    num_users=single.i;
-                                              
+	printf("Read in %i of company's users.\n",single.i);
+    num_users=single.j;
+    
 	//Sum up all respective user's scores
-	for (single.i=0;single.i<num_users;single.i++)
+	for (single.j=0;single.j<num_users;single.j++)
 	{
-		single.search_id=search_company.user_id[single.i];
+		single.search_id=search_company.user_id[single.j];
         user_reputation();
-        company_rating=company_rating+single.rating;
-            
+        single.company_rating=single.company_rating+single.rating;
+        single.company_rating_sqr=(single.company_rating_sqr+(single.company_rating*single.company_rating));
+        
 	};//end for loop
+    
+}
 
+void company_rating()
+{    
+	system("cls");
+    char * output;
+	single.company_id=0;
+	
+	if (single.error!=0)
+	{	printf("Warning, error code 1 in system.\nContinuing...\n");
+		getchar();
+	}
+	
+	printf("Determine company rating.\nPlease enter company ID number:\n");
+	scanf("%i",&single.company_id);
+	if (single.company_id==0)
+	{	printf("No value entered - aborting.\n");
+		return;
+	}
+	
+	company_reputation();
 	
 	//Output results
-	printf("Processed %i connected users, company's score is %f.\n",single.i,company_rating);
+	printf("Processed %i connected users, company's score is %f.\n",single.i,single.company_rating);
 	
     //Save results to MySQL
     time(&now); //resets clock to current time
     single.time_now = (unsigned long) (now);
-    sprintf(output,"INSERT INTO company_ratings (company_id,company_rating,timestamp VALUES ('%i','%f','%li')",single.company_id,company_rating,single.time_now);
+    sprintf(output,"INSERT INTO company_ratings (company_id,company_rating,timestamp VALUES ('%i','%f','%li')",single.company_id,single.company_rating,single.time_now);
     if (mysql_query(conn, output)) 
 	{
 		printf("Error %u: %s\n", mysql_errno(conn), mysql_error(conn));
 	}
     printf("Results inserted into MySQL.\n");
+    
+    //Free memory
     mysql_disconnect();
     free (search_company.company_id);
     free (search_company.user_id);
@@ -1455,12 +1488,140 @@ void list_factors()
     fclose(ratingfactors);
 }//end list factors
 
+//This program generates a raw_rating
+void rate_user()
+{	loadin_factors();
+    //Read in target id (i.e. user to rate)
+    
+    //Read in source id (i.e. user making rating)
+    
+    //Read in rating value (i.e. the rating the source id has given)
+    //Assume rating is a value between 0 and 10
+    
+    //Raw rating consists of link_level, source's rating and the actual rating value
+    //Determine source user's current rating (using user_reputation algo)
+    
+    //Determine currentlink level
+    //Use values from rating_factors.fidei
+    
+    //Calculate raw rating: link_level_factor*source's_rating*given_rating
+    
+    //Print result
+    
+    //Store result in contact list using MySQL
+    
+    //Free memory/close connections
+}//end rate_user function
+
+void user_analytics()
+{	//Determine mean and standard deviation of a user's ratings
+    //So sum up all the active ratings of a user's contact's and divide by number of contacts
+    system("cls");
+    char * output;
+    
+	if (single.error!=0)
+	{	printf("Warning, error code 1 in system.\nContinuing...\n");
+		getchar();
+	}
+    single.user_analytic_id=0;
+    
+	printf("Review user analytics.\nPlease enter user ID number:\n");
+	scanf("%i",&single.user_analytic_id);
+	if (single.user_analytic_id==0)
+	{	printf("No value entered - aborting.\n");
+		return;
+	}
+    
+	single.search_id=single.user_analytic_id;
+    
+    //takes in search_id and returns single.i(n), single.rating(x) & single.user_rating_sqr(x^2)
+    user_reputation();
+    
+    single.user_mean=(single.rating/single.i);
+    single.user_std_dev=(sqrt(single.user_rating_sqr-(single.rating*single.rating)));
+    
+    //Store & print result
+    if (single.rating!=0)
+    {printf("User rating is %f.\n",single.rating);
+     printf("User mean is: %f , standard deviation is: %f.\n",single.user_mean,single.user_std_dev);   
+    }//end if
+    else 
+    {printf("Error in establishing user rating, mean and standard deviation.\n");
+    }
+    
+    //Save results to MySQL
+    time(&now); //resets clock to current time
+    single.time_now = (unsigned long) (now);
+    sprintf(output,"INSERT INTO user_analytics (user_id,user_mean,user_std_dev,timestamp) VALUES ('%i','%f','%f','%li')",
+            			single.user_analytic_id,single.user_mean,single.user_std_dev,single.time_now);
+    if (mysql_query(conn, output)) 
+	{
+		printf("Error %u: %s\n", mysql_errno(conn), mysql_error(conn));
+	}
+    printf("User results inserted into MySQL.\n");
+    
+    //Close connections
+    getchar();
+    mysql_disconnect();
+    
+}//end user analytics function
+
+void company_analytics ()
+{   system("cls");
+    char * output;
+    
+	if (single.error!=0)
+	{	printf("Warning, error code 1 in system.\nContinuing...\n");
+		getchar();
+	}
+	
+    single.company_analytic_id=0;
+	printf("Review user analytics.\nPlease enter user ID number:\n");
+	scanf("%i",&single.company_analytic_id);
+	if (single.company_analytic_id==0)
+	{	printf("No value entered - aborting.\n");
+		return;
+	}
+    
+    single.company_id=single.company_analytic_id;
+    company_reputation();
+    
+    //Perform calculations
+    single.company_mean=(single.company_rating/single.j);
+    single.company_std_dev=sqrt((single.company_rating_sqr-(single.company_rating*single.company_rating)));
+    
+    //Store & print result
+    if (single.company_rating!=0)
+    {printf("Company rating result is %f.\n",single.company_rating);
+        printf("Company mean is: %f , standard deviation is: %f.\n",single.company_mean,single.company_std_dev);   
+    }//end if
+    else 
+    {printf("Error in establishing user rating, mean and standard deviation.\n");
+    }
+    
+    //Save results to MySQL
+    time(&now); //resets clock to current time
+    single.time_now = (unsigned long) (now);
+    sprintf(output,"INSERT INTO company_analytics (company_id,company_mean,company_std_dev,timestamp) VALUES ('%i','%f','%f','%li')",
+            single.company_analytic_id,single.company_mean,single.company_std_dev,single.time_now);
+    if (mysql_query(conn, output)) 
+	{
+		printf("Error %u: %s\n", mysql_errno(conn), mysql_error(conn));
+	}
+    printf("Company results inserted into MySQL.\n");
+
+    //Close connections
+    getchar();
+    mysql_disconnect();
+    
+}//end company analytics function
+
 //TODO
-//1) Finish data generator
-//3) Function that makes a raw rating
-//6) Test and prove program works well
-//7) Generate basic stats/analytics for users
+//1) Finish data generator*
+//3) Function that makes a raw rating***
+//6) Test and prove program works well-generate input files, split into seperate programs, use input switches
 //8) Generate parralesied process
+//9) Insert function to test freed memory
 
 int main(int argc, char *argv[])
 { int menu_option=0;
@@ -1484,6 +1645,9 @@ int main(int argc, char *argv[])
                "Enter 6 to find a user's own rating score from mysql database.\n"
 			   "Enter 7 to find a company's score from mysql.\n"
 			   "Enter 8 to list the rating factors.\n"
+               "Enter 9 to review user analytics.\n"
+               "Enter 10 to review company analytics.\n"
+               "Enter 11 to give a user a rating.-TODO\n"
 			   "Enter 99 to exit.\n");
 		scanf("%d",&menu_option);
 		switch(menu_option)
@@ -1550,6 +1714,10 @@ int main(int argc, char *argv[])
 				break;
 			case 8: list_factors();
 				break;
+            case 9: user_analytics();    
+                break;
+            case 10: company_analytics();
+                break;
 			case 99: exit(1);
 				
 			default: printf("\n\nYou have not chosen a valid selection. Please re-try.\n\n");
