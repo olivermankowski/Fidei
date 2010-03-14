@@ -36,8 +36,8 @@
 			PBXWorkspaceStateSaveDate = 290173024;
 		};
 		perUserProjectItems = {
-			EC12E8A211134BF2000FEBE0 = EC12E8A211134BF2000FEBE0 /* PBXTextBookmark */;
-			ECAA5C2A11401E7500FBA54A = ECAA5C2A11401E7500FBA54A /* PBXTextBookmark */;
+			ECAA5C2A11401E7500FBA54A /* PBXTextBookmark */ = ECAA5C2A11401E7500FBA54A /* PBXTextBookmark */;
+			ECDC4631114C6E1400C27387 /* PBXTextBookmark */ = ECDC4631114C6E1400C27387 /* PBXTextBookmark */;
 		};
 		sourceControlManager = ECFA537510EF993200F8E6BC /* Source Control */;
 		userBuildSettings = {
@@ -45,9 +45,9 @@
 	};
 	08FB7796FE84155DC02AAC07 /* main.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {775, 3016}}";
-			sepNavSelRange = "{3165, 0}";
-			sepNavVisRange = "{2065, 1565}";
+			sepNavIntBoundsRect = "{{0, 0}, {831, 3081}}";
+			sepNavSelRange = "{1464, 0}";
+			sepNavVisRange = "{3535, 1545}";
 			sepNavWindowFrame = "{{200, 21}, {953, 495}}";
 		};
 	};
@@ -56,16 +56,6 @@
 		executables = (
 			ECB9F1FF10EFBAF20098E046 /* Mysql_connect */,
 		);
-	};
-	EC12E8A211134BF2000FEBE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
-		name = "main.c: 100";
-		rLen = 0;
-		rLoc = 4584;
-		rType = 0;
-		vrLen = 1517;
-		vrLoc = 2361;
 	};
 	ECAA5C2A11401E7500FBA54A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -108,6 +98,16 @@
 		);
 		variableFormatDictionary = {
 		};
+	};
+	ECDC4631114C6E1400C27387 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 56";
+		rLen = 0;
+		rLoc = 1464;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 3535;
 	};
 	ECFA537510EF993200F8E6BC /* Source Control */ = {
 		isa = PBXSourceControlManager;

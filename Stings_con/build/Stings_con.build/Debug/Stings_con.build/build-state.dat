@@ -26,6 +26,27 @@ c000000004A5C14A70000000000001731
 t1247548583
 s5937
 
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Stings_con/build/Debug/Stings_con
+t1267805731
+s9288
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/Stings_con.LinkFileList
+c000000004B912554000000000000007C
+t1267803476
+s124
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o
+t1267805730
+s3728
+
+N/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Stings_con/main.c
+c000000004B912E2200000000000002F6
+t1267805730
+s758
+i<stdio.h>
+i<string.h>
+i<stdlib.h>
+
 N/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con
 t1267805731
 s9288
@@ -51,6 +72,9 @@ CCheck dependencies
 r0
 lSLF07#2@18"Check dependencies289498530#289498530#0(0"0(0#1#0"4300885448#0"0#
 
+CCompileC build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Stings_con/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o /Users/olivermankowski/Dropbox/Active/Stings_con/main.c normal x86_64 c com.apple.compilers.gcc.4_2
 s289498530.929224
 e289498530.997980
@@ -63,6 +87,9 @@ xx86_64
 xc
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@63"Compile /Users/olivermankowski/Dropbox/Active/Stings_con/main.c289498530#289498530#0(0"0(0#0#55"/Users/olivermankowski/Dropbox/Active/Stings_con/main.c4300885448#1434"    cd /Users/olivermankowski/Dropbox/Active/Stings_con    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-generated-files.hmap -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-own-target-headers.hmap -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-all-target-headers.hmap -iquote /Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Stings_con-project-headers.hmap -F/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/include -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/DerivedSources/x86_64 -I/Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/DerivedSources -c /Users/olivermankowski/Dropbox/Active/Stings_con/main.c -o /Users/olivermankowski/Dropbox/Active/Stings_con/build/Stings_con.build/Debug/Stings_con.build/Objects-normal/x86_64/main.o0#
+
+CLd "/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Stings_con/build/Debug/Stings_con" normal x86_64
+r0
 
 CLd /Users/olivermankowski/Dropbox/Active/Stings_con/build/Debug/Stings_con normal x86_64
 s289498530.998080

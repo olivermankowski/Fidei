@@ -304,8 +304,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -323,10 +321,10 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>ECAA5C2A11401E7500FBA54A</string>
+										<string>ECDC4631114C6E1400C27387</string>
 										<key>history</key>
 										<array>
-											<string>EC12E8A211134BF2000FEBE0</string>
+											<string>ECAA5C2A11401E7500FBA54A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -338,16 +336,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {721, 593}}</string>
+								<string>{{0, 0}, {721, 591}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 62 726 716 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>593pt</string>
+							<string>591pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -358,14 +358,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 598}, {721, 77}}</string>
+								<string>{{0, 596}, {721, 79}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 62 726 716 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>77pt</string>
+							<string>79pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -384,9 +384,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>ECAA5B6F11400DC300FBA54A</string>
+				<string>ECDC4632114C6E1400C27387</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>ECAA5B7011400DC300FBA54A</string>
+				<string>ECDC4633114C6E1400C27387</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -524,12 +524,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>ECAA5B8011400E0600FBA54A</string>
-		<string>ECAA5B8111400E0600FBA54A</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>ECFA536A10EF993200F8E6BC</string>
-		<string>/Users/olivermankowski/Dropbox/Active/Fidei/C Work/Mysql_connect/Mysql_connect.xcodeproj</string>
+		<string>/Users/olivermankowski/Dropbox/Active/Fidei/C Work/git_active/Mysql_connect/Mysql_connect.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 62 726 716 0 0 1280 778 </string>
@@ -609,7 +606,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>ECFA536A10EF993200F8E6BC</string>
-				<string>ECAA5B7111400DC300FBA54A</string>
+				<string>ECDC4634114C6E1400C27387</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -731,13 +728,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>ECAA5B7711400E0000FBA54A</string>
+				<string>ECDC4635114C6E1400C27387</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>ECAA5B7811400E0000FBA54A</string>
-				<string>ECAA5B7911400E0000FBA54A</string>
-				<string>ECAA5B7A11400E0000FBA54A</string>
-				<string>ECAA5B7B11400E0000FBA54A</string>
-				<string>ECAA5B7C11400E0000FBA54A</string>
+				<string>ECDC4636114C6E1400C27387</string>
+				<string>ECDC4637114C6E1400C27387</string>
+				<string>ECDC4638114C6E1400C27387</string>
+				<string>ECDC4639114C6E1400C27387</string>
+				<string>ECDC463A114C6E1400C27387</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
