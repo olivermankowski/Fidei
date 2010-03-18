@@ -46,9 +46,17 @@ struct CONTACT_LIST
 };
 struct CONTACT_LIST contact_list;
 
+struct SEARCH_USER
+{	int * target_id;
+    int * source_id;
+    float * source_rating;
+};
+struct SEARCH_USER search_user;
+
 struct SEARCH_COMPANY
 {	int * company_id;
 	int * user_id;
+    float * user_rating;
 };
 struct SEARCH_COMPANY search_company;
 
@@ -1135,6 +1143,7 @@ void find_user_rating_mysql()
 void user_reputation()	//reads in single.search_id and returns single.rating
 {	
     char * search;
+    int num_rows=0;
     single.rating=0;
     mysql_connect();
     loadin_factors();
@@ -1164,6 +1173,43 @@ void user_reputation()	//reads in single.search_id and returns single.rating
 	{printf("No results found.\n");
 	};
 	
+    //Determine number of rows
+	num_rows = mysql_num_rows(result);
+	printf("Found %i connected users.\n",num_rows);
+    
+    //Free memory if previously allocated
+    free(search_user.target_id);
+    free(search_user.source_id);
+    free(search_user.source_rating);
+    
+	//Memory allocation
+	//Company ID
+	search_user.target_id = (int *) realloc (search_user.target_id, ((num_rows +1) * sizeof(int)));
+	if (search_company.company_id == NULL)
+	{ puts ("Error (re)allocating search user target id memory\n"); getchar();single.error=1;}
+	
+    //User ID
+	search_user.source_id = (int *) realloc (search_user.source_id, ((num_rows +1) * sizeof(int)));
+	if (search_user.source_id == NULL)
+	{ puts ("Error (re)allocating search user source id memory\n"); 
+        getchar();
+        single.error=1;
+    };
+    //User_rating
+    search_user.source_rating = (float *) realloc (search_user.source_rating, ((num_rows +1) * sizeof(float)));
+	if (search_user.source_rating == NULL)
+	{ puts ("Error (re)allocating search user source rating memory\n"); 
+        getchar();
+        single.error=1;
+    };
+    
+    //Memset memory     
+    memset (search_user.target_id, '\0', sizeof(search_user.target_id));
+    memset (search_user.source_id, '\0', sizeof(search_user.source_id));
+    memset (search_user.source_rating, '\0', sizeof(search_user.source_rating));
+    
+	printf("Memory allocated.\n");
+    
 	time(&now); //resets clock to current time
 	single.i=0;
     single.rating=0; //resets
@@ -1181,7 +1227,7 @@ void user_reputation()	//reads in single.search_id and returns single.rating
 		single.current_time_stamp=atoi(row[3]);
 		single.raw_rating=atoi(row[2]);
 		single.rating_elapsed=difftime(now,single.current_time_stamp);
-		
+        
 		if (single.rating_elapsed<0)
 		{printf("Error in difftime calc; timestamp in future.\nProcess will continue,but result is invalid.\n");
 			getchar();
@@ -1230,6 +1276,12 @@ void user_reputation()	//reads in single.search_id and returns single.rating
         
         //Produces sum of squares
     	single.user_rating_sqr=single.user_rating_sqr+(single.rating*single.rating); 
+        
+        //Store results in struct for graphing
+        search_user.target_id[single.i]=atoi(row[0]);
+        search_user.source_id[single.i]=atoi(row[1]);
+        search_user.source_rating[single.i]=single.adjusted_rating;
+        single.i++;
 	};
     
     return;
@@ -1357,10 +1409,14 @@ void company_reputation()
 	};
 	
 	//Determine number of rows
-	//Find the number of fields (columns)
 	num_rows = mysql_num_rows(result);
 	printf("Found %i connected users.\n",num_rows);
 	
+    //Free memory if previously allocated
+    free(search_company.company_id);
+    free(search_company.user_id);
+    free(search_company.user_rating);
+    
 	//Memory allocation
 	//Company ID
 	search_company.company_id = (int *) realloc (search_company.company_id, ((num_rows +1) * sizeof(int)));
@@ -1374,13 +1430,26 @@ void company_reputation()
         getchar();
         single.error=1;
     };
+    //User_rating
+    search_company.user_rating = (float *) realloc (search_company.user_rating, ((num_rows +1) * sizeof(float)));
+	if (search_company.user_rating == NULL)
+	{ puts ("Error (re)allocating search company user rating memory\n"); 
+        getchar();
+        single.error=1;
+    };
+    
+    //Memset memory     
+    memset (search_company.company_id, '\0', sizeof(search_company.company_id));
+    memset (search_company.user_id, '\0', sizeof(search_company.user_id));
+    memset (search_company.user_rating, '\0', sizeof(search_company.user_rating));
+    
 	printf("Memory allocated.\n");
     
 	//Now for rows 0 to number of number of rows
 	single.i=0;
 	while ((row = mysql_fetch_row(result)) != NULL)
-	{   * search_company.company_id=atoi(row[0]);
-		* search_company.user_id=atoi(row[1]);	
+	{   search_company.company_id[single.i]=atoi(row[0]);
+		search_company.user_id[single.i]=atoi(row[1]);	
 		single.i++;
 	}//end while loop
 	
@@ -1392,6 +1461,7 @@ void company_reputation()
 	{
 		single.search_id=search_company.user_id[single.j];
         user_reputation();
+        search_company.user_rating[single.j]=single.rating;
         single.company_rating=single.company_rating+single.rating;
         single.company_rating_sqr=(single.company_rating_sqr+(single.company_rating*single.company_rating));
         
@@ -1621,7 +1691,7 @@ void company_analytics ()
 //3) Function that makes a raw rating***
 //6) Test and prove program works well-generate input files, split into seperate programs, use input switches
 //8) Generate parralesied process
-//9) Insert function to test freed memory
+//9) Insert function to test freed memory & memset memory
 
 int main(int argc, char *argv[])
 { int menu_option=0;
@@ -1717,6 +1787,8 @@ int main(int argc, char *argv[])
             case 9: user_analytics();    
                 break;
             case 10: company_analytics();
+                break;
+            case 11: rate_user();
                 break;
 			case 99: exit(1);
 				
